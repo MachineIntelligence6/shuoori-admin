@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import { ArrowDown, ArrowUp, AlertCircle, Check, Eye, EyeOff, ImagePlus, Plus, RefreshCw, Save, Trash2, Upload, Video, Database, AlertTriangle } from "lucide-react"
+import { ArrowDown, ArrowUp, AlertCircle, Check, Eye, EyeOff, ImagePlus, Plus, RefreshCw, Save, Trash2, Upload, Video, Database, AlertTriangle, LogOut } from "lucide-react"
 import {
   SECTION_CONFIG_BY_KEY,
   SECTION_KEYS,
@@ -94,6 +94,12 @@ function previewUrl(url: string) {
   return `http://localhost:5173${path}`
 }
 
+function redirectIfUnauthorized(response: Response) {
+  if (response.status !== 401) return false
+  window.location.href = "/login"
+  return true
+}
+
 function visibleFields(config: SectionConfig, item: SectionItem) {
   const kind = typeof item.kind === "string" ? item.kind : ""
 
@@ -156,6 +162,7 @@ export default function AdminDashboard() {
 
     try {
       const response = await fetch("/api/admin/sections", { cache: "no-store" })
+      if (redirectIfUnauthorized(response)) return
       const payload = await response.json()
 
       if (!response.ok) throw new Error(payload.error || "Failed to load sections")
@@ -263,6 +270,7 @@ export default function AdminDashboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       })
+      if (redirectIfUnauthorized(response)) return
       const result = await response.json()
 
       if (!response.ok) throw new Error(result.error || "Failed to save section")
@@ -292,6 +300,7 @@ export default function AdminDashboard() {
       method: "POST",
       body: formData,
     })
+    if (redirectIfUnauthorized(response)) return
     const result = await response.json()
 
     if (!response.ok) {
@@ -360,6 +369,11 @@ export default function AdminDashboard() {
     updateSelected({ images: nextImages })
   }
 
+  async function signOut() {
+    await fetch("/api/admin/logout", { method: "POST" }).catch(() => undefined)
+    window.location.href = "/login"
+  }
+
   return (
     <main className="min-h-screen bg-[#FAF9F5] text-ink font-sans">
       <div className="grid min-h-screen w-full grid-cols-[320px_minmax(0,1fr)] gap-8 px-8 py-8">
@@ -390,6 +404,15 @@ export default function AdminDashboard() {
                   title="Refresh database connection"
                 >
                   <RefreshCw className={`h-3.5 w-3.5 ${isLoading ? "animate-spin text-[#2EB8AA]" : ""}`} />
+                </button>
+                <button
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E4E6EA] bg-white text-slate-400 transition hover:bg-red-50 hover:text-red-600 shadow-sm"
+                  onClick={signOut}
+                  type="button"
+                  aria-label="Sign out"
+                  title="Sign out"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
                 </button>
               </div>
             </div>
