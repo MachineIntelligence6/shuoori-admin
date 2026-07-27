@@ -31,16 +31,19 @@ function AnimatedStatistic({ target, suffix = "", decimals = 0 }: { target: numb
 }
 import {
     ArrowUpRight,
+    CalendarDays,
     CheckCircle2,
     ChevronDown,
     ChevronUp,
     ChevronLeft,
     ChevronRight,
     Flame,
+    Gift,
     Heart,
     Mic,
     ShieldAlert,
     Smile,
+    Tag,
     ThumbsUp,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
@@ -110,8 +113,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
     const testimonials = [
         {
             quote: t(
-                "I've tried every mood tracker out there. EmotionFlow is the first one that actually helped me understand why I feel the way I do. The AI insights are genuinely useful.",
-                "جرّبت كل تطبيقات تتبع المزاج، لكن EmotionFlow كان الأول الذي ساعدني فعلياً على فهم سبب مشاعري. الرؤى بالذكاء الاصطناعي مفيدة جداً."
+                "I've tried every mood tracker out there. Shuoori is the first one that actually helped me understand why I feel the way I do. The AI insights are genuinely useful.",
+                "جرّبت كل تطبيقات تتبع المزاج، لكن Shuoori كان الأول الذي ساعدني فعلياً على فهم سبب مشاعري. الرؤى بالذكاء الاصطناعي مفيدة جداً."
             ),
             name: t("Sarah M.", "سارة جميل"),
             title: t("Therapist · Dubai", "أخصائية نفسية · دبي"),
@@ -187,7 +190,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
         {
             id: "hipaa" as const,
             title: t("HIPAA Compliant", "متوافق مع HIPAA"),
-            desc: t("EmotionFlow adheres to HIPAA (Health Insurance Portability and Accountability Act) standards — the highest level of healthcare data protection in the industry.", "يلتزم EmotionFlow بمعايير HIPAA — أعلى مستوى لحماية بيانات الرعاية الصحية في المجال."),
+            desc: t("Shuoori adheres to HIPAA (Health Insurance Portability and Accountability Act) standards — the highest level of healthcare data protection in the industry.", "يلتزم Shuoori بمعايير HIPAA — أعلى مستوى لحماية بيانات الرعاية الصحية في المجال."),
         },
     ]
 
@@ -287,8 +290,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                         </h1>
                         <p className="mt-[24px] w-full max-w-[760px] text-[14px] leading-[26px] text-[#4A5462] md:text-[16px] md:leading-[30px]">
                             {t(
-                                "EmotionFlow helps you track, understand, and improve your emotional health through intuitive journaling, AI-powered insights, and beautiful analytics — in just 60 seconds a day.",
-                                "يساعدك EmotionFlow على تتبع وفهم وتحسين صحتك العاطفية عبر تدوين المشاعر والبصيرة المدعومة بالذكاء الاصطناعي والتحليلات الجميلة — خلال 60 ثانية يومياً."
+                                "Shuoori helps you track, understand, and improve your emotional health through intuitive journaling, AI-powered insights, and beautiful analytics — in just 60 seconds a day.",
+                                "يساعدك Shuoori على تتبع وفهم وتحسين صحتك العاطفية عبر تدوين المشاعر والبصيرة المدعومة بالذكاء الاصطناعي والتحليلات الجميلة — خلال 60 ثانية يومياً."
                             )}
                         </p>
 
@@ -359,52 +362,9 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                         initial={{ opacity: 0, y: 32, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-                        className="relative flex w-full justify-center lg:w-[580px] xl:w-[680px] 2xl:w-[780px] lg:flex-shrink-0"
+                        className="relative flex w-full items-center justify-center lg:w-[480px] xl:w-[520px] 2xl:w-[560px] lg:flex-shrink-0"
                     >
-                        <div className="relative overflow-hidden rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.12)] aspect-[4/3] lg:aspect-[1.35] w-full">
-                            {(() => {
-                                const cmsSectionsMap = groupSectionsByKey(rawSections)
-                                const heroMediaArray = cmsSectionsMap.hero?.images
-                                const heroVideoMedia = Array.isArray(heroMediaArray) ? heroMediaArray.find(img => img?.url && /\.(mp4|webm|mov|m4v)(\?|$)/i.test(img.url)) : undefined
-                                const activeHeroVideo = heroVideoMedia?.url ? (heroVideoMedia.url.startsWith("http") ? heroVideoMedia.url : heroVideoMedia.url) : heroBannerVideo
-
-                                return (
-                                    <video
-                                        ref={heroVideoRef}
-                                        key={activeHeroVideo}
-                                        className="h-full w-full object-cover"
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        preload="auto"
-                                    >
-                                        <source src={activeHeroVideo} type="video/mp4" />
-                                    </video>
-                                )
-                            })()}
-
-                            {/* Video Player Controls Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-
-                            {/* Interactive Play/Pause Trigger */}
-                            <button
-                                onClick={toggleHeroVideo}
-                                className={`absolute bottom-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 border border-white/20 backdrop-blur-md text-white transition-all hover:bg-white/40 hover:scale-105 active:scale-95 shadow-[0_4px_12px_rgba(0,0,0,0.08)] ${isRtl ? "left-5" : "right-5"
-                                    }`}
-                                aria-label={isHeroVideoPlaying ? "Pause Video" : "Play Video"}
-                            >
-                                {isHeroVideoPlaying ? (
-                                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                                    </svg>
-                                ) : (
-                                    <svg className="w-4 h-4 fill-current translate-x-[1px]" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                )}
-                            </button>
-                        </div>
+                        <EmotionWheelSandbox locale={locale} t={t} />
                     </motion.div>
 
                     {/* Floating Cards (Visible only on lg displays) */}
@@ -515,8 +475,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                         </h2>
                         <p className="max-w-[px] w-full text-[18px] leading-[28px] text-[#4A5462]">
                             {t(
-                                "From logging your first emotion to receiving personalized monthly reports EmotionFlow guides you every step of the way.",
-                                "من تسجيل أول شعور لك إلى استلام تقارير شهرية مخصصة، يرشدك EmotionFlow في كل خطوة على الطريق."
+                                "From logging your first emotion to receiving personalized monthly reports Shuoori guides you every step of the way.",
+                                "من تسجيل أول شعور لك إلى استلام تقارير شهرية مخصصة، يرشدك Shuoori في كل خطوة على الطريق."
                             )}
                         </p>
                     </div>
@@ -670,8 +630,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                         </h2>
                         <p className="max-w-[px] w-full text-[18px] leading-[28px] text-[#4A5462]">
                             {t(
-                                "EmotionFlow combines the best parts of journaling, mood tracking, and analytics into one beautiful, private space.",
-                                "يجمع EmotionFlow بين أفضل ما في تدوين المشاعر وتتبع المزاج والتحليلات في مساحة جميلة وخاصة."
+                                "Shuoori combines the best parts of journaling, mood tracking, and analytics into one beautiful, private space.",
+                                "يجمع Shuoori بين أفضل ما في تدوين المشاعر وتتبع المزاج والتحليلات في مساحة جميلة وخاصة."
                             )}
                         </p>
                     </div>
@@ -797,8 +757,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                         </h2>
                         <p className="max-w-[px] w-full text-[18px] leading-[28px] text-[#4A5462]">
                             {t(
-                                "Thousands of people have used EmotionFlow to understand themselves better and build healthier emotional habits.",
-                                "انضم إلى الآلاف ممن استخدموا EmotionFlow لفهم أنفسهم بشكل أعمق وبناء عادات عاطفية صحية."
+                                "Thousands of people have used Shuoori to understand themselves better and build healthier emotional habits.",
+                                "انضم إلى الآلاف ممن استخدموا Shuoori لفهم أنفسهم بشكل أعمق وبناء عادات عاطفية صحية."
                             )}
                         </p>
                     </div>
@@ -892,87 +852,92 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                 </div>
             </section>
 
-            <section id="pricing" className="bg-[#F8F9FB] py-[128px]">
-                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[64px] px-6 lg:px-[96px]">
-                    <div className="flex flex-col items-center gap-[12px] text-center mb-[24px]">
-                        <div className="flex items-center justify-center rounded-full border border-[#2EB8AA] px-[20px] py-[6px] text-[15px] font-medium text-[#1C6964] shadow-sm">
-                            {t("Simple Pricing", "خطط الاشتراك")}
+            <section id="pricing" className="bg-[#F8F9FB] py-[96px] sm:py-[120px]">
+                <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center px-6 lg:px-[96px]">
+                    {/* Header */}
+                    <div className="flex flex-col items-center gap-[12px] text-center mb-[40px] sm:mb-[52px]">
+                        <div className="inline-flex items-center gap-[8px] rounded-full border border-[#2EB8AA]/30 bg-[#F2FBF9] px-[16px] py-[6px] text-[13px] font-bold text-[#1C6964] shadow-sm">
+                            <Tag className="h-3.5 w-3.5 text-[#2EB8AA]" />
+                            <span>{t("PRICING", "الأسعار")}</span>
                         </div>
-                        <h2 className="text-[48px] font-semibold leading-[1.1] tracking-[-1.92px]">
-                            {t("Invest in your ", "استثمر في ")}
-                            <span className="text-[#2EB8AA]">{t("emotional wellness", "رفاهك العاطفي")}</span>
+                        <h2 className="text-[34px] sm:text-[46px] font-extrabold leading-[1.15] tracking-[-1.5px] text-[#101827]">
+                            {t("Simple, Transparent Pricing", "أسعار بسيطة وشفافة")}
                         </h2>
-                        <p className="w-[670px] max-w-full text-[18px] leading-[28px] text-[#4A5462]">
-                            {t("Start free, upgrade when you're ready. No hidden fees, no long-term contracts.", "ابدأ مجاناً، وحدث عندما تكون مستعداً. بدون رسوم خفية أو عقود طويلة.")}
+                        <p className="max-w-[580px] text-[16px] sm:text-[18px] leading-[28px] text-[#4A5462]">
+                            {t("We believe in keeping things simple. Enjoy full access to Shuoori today — with more options coming soon.", "نؤمن بتبسيط الأمور. استمتع بالوصول الكامل إلى Shuoori اليوم — مع خيارات إضافية قادمة قريباً.")}
                         </p>
                     </div>
-                    <div className={`flex items-center rounded-full bg-white p-[6px] shadow-[0_8px_24px_rgba(16,24,39,0.06)] ring-1 ring-[#E8EBF0] ${isRtl ? "flex-row-reverse" : ""}`}>
-                        <button
-                            type="button"
-                            onClick={() => setPricingPeriod("monthly")}
-                            className={`rounded-full px-[22px] py-[10px] text-[14px] font-semibold transition-all ${pricingPeriod === "monthly" ? "bg-[#2EB8AA] text-white shadow-[0_8px_18px_rgba(46,184,170,0.28)]" : "text-[#6A727F]"}`}
-                        >
-                            {t("Monthly", "شهري")}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setPricingPeriod("yearly")}
-                            className={`rounded-full px-[22px] py-[10px] text-[14px] font-semibold transition-all ${pricingPeriod === "yearly" ? "bg-[#2EB8AA] text-white shadow-[0_8px_18px_rgba(46,184,170,0.28)]" : "text-[#6A727F]"}`}
-                        >
-                            {t("Yearly", "سنوي")}
-                        </button>
-                    </div>
-                    <div className="w-full max-w-[480px] mx-auto mt-[16px]">
-                        {/* Free Plan */}
-                        <div className={`group w-full h-full flex flex-col rounded-[24px] bg-white p-[32px] md:p-[40px] shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-[#f3f4f6] transition-all duration-300 hover:bg-[#DCF8F1] hover:shadow-[0_24px_48px_rgba(46,184,170,0.15)] lg:hover:scale-[1.05] ${isRtl ? "text-right" : "text-left"}`}>
-                            <p className="text-[18px] font-medium text-[#6A727F]">{t("Free plan", "الخطة المجانية")}</p>
-                            <div className="mt-[16px] text-[40px] font-bold leading-[1] tracking-[-0.8px] text-[#101827]">
-                                {pricingPeriod === "monthly" ? t("$0.00/mth", "0$/شهرياً") : t("$0.00/year", "0$/سنوياً")}
-                            </div>
-                            <p className="mt-[12px] text-[13px] leading-[20px] text-[#6A727F] max-w-[220px]">{t("Perfect for getting started with emotion tracking.", "مثالية للبدء في تتبع المشاعر.")}</p>
 
-                            <p className="mt-[32px] text-[15px] font-bold text-[#101827]">{t("Features of your current plan:", "ميزات خطتك الحالية:")}</p>
-                            <div className={`mt-[16px] flex flex-1 flex-col gap-[16px] ${isRtl ? "items-start text-right" : "items-start"}`}>
-                                {(() => {
-                                    const cmsSectionsMap = groupSectionsByKey(rawSections)
-                                    const pricingCmsItem = cmsSectionsMap.pricing?.items?.[0] as Record<string, any> | undefined
-                                    const cmsFeats = pricingCmsItem?.features
-                                    const dynamicFeatures: string[] = Array.isArray(cmsFeats) ? cmsFeats.map((feat: any) => {
-                                        if (typeof feat === "string") return feat
-                                        if (feat && typeof feat === "object") {
-                                            const val = isRtl ? (feat.ar || feat.en) : (feat.en || feat.ar)
-                                            return typeof val === "string" ? val : ""
-                                        }
-                                        return ""
-                                    }).filter(Boolean) : []
+                    {/* Single Plan Card & Banner Container */}
+                    {(() => {
+                        const cmsSectionsMap = groupSectionsByKey(rawSections)
+                        const item = (cmsSectionsMap.pricing?.items?.[0] || {}) as Record<string, any>
 
-                                    const featuresToRender = dynamicFeatures.length > 0 ? dynamicFeatures : [
-                                        t("Basic emotion logging (up to 50 emotions/month)", "تسجيل المشاعر الأساسي (حتى 50 شعورًا شهريًا)"),
-                                        t("Simple emotion wheel interface", "واجهة عجلة مشاعر بسيطة"),
-                                        t("Basic dashboard view", "عرض لوحة تحكم أساسية"),
-                                        t("7-day emotion history", "سجل المشاعر لمدة 7 أيام"),
-                                        t("Email reminders (1 per week)", "تذكير عبر البريد الإلكتروني (مرة أسبوعيًا)"),
-                                    ]
+                        const getVal = (fieldObj: any, fallbackEn: string, fallbackAr: string) => {
+                            if (!fieldObj) return isRtl ? fallbackAr : fallbackEn
+                            if (typeof fieldObj === "string") return fieldObj
+                            const val = isRtl ? (fieldObj.ar || fieldObj.en) : (fieldObj.en || fieldObj.ar)
+                            return typeof val === "string" && val ? val : (isRtl ? fallbackAr : fallbackEn)
+                        }
 
-                                    return featuresToRender.map((feature, idx) => (
-                                        <div key={idx} className="flex items-start gap-[12px]">
-                                            <div className="mt-[2px] flex h-[20px] w-[20px] min-w-[20px] items-center justify-center rounded-full bg-[#E5F7F0] text-[#16A34A] shrink-0">
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M10 3L4.5 8.5L2 6" stroke="#2EB8AA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                </svg>
-                                            </div>
-                                            <p className="text-[13px] leading-[20px] text-[#4A5462]">{feature}</p>
+                        const tagline = getVal(item.tagline, "FOR NOW", "حالياً")
+                        const headline = getVal(item.headline, "Enjoy Unlimited Access!", "استمتع بجميع الميزات مجاناً!")
+                        const subtext = getVal(item.subtext, "All features are available to you right now. No payments, no limits.", "جميع الميزات متاحة لك الآن. بدون أية مدفوعات وبدون حدود.")
+                        const freeBadge = getVal(item.freeBadge, "100% Free to Use", "مجاني 100% للمستخدمين")
+                        const bannerTitle = getVal(item.bannerTitle, "More Plans Coming Soon", "المزيد من الخطط قريباً")
+                        const bannerSubtext = getVal(item.bannerSubtext, "We're working on exciting premium plans to bring you even more.", "نعمل على تصميم خطط احترافية مميزة لتوفير المزيد من الخصائص.")
+                        const bannerButton = getVal(item.bannerButton, "Stay Tuned!", "ترقبوا الجديد!")
+
+                        return (
+                            <div className="w-full max-w-[680px] mx-auto flex flex-col gap-[20px]">
+                                {/* Main Free Card */}
+                                <div className="relative overflow-hidden rounded-[32px] border border-[#2EB8AA]/20 bg-[linear-gradient(180deg,#F2FBF9_0%,#FFFFFF_100%)] p-[36px] sm:p-[48px] shadow-[0_24px_60px_rgba(46,184,170,0.10)] text-center flex flex-col items-center">
+                                    {/* Icon Badge */}
+                                    <div className="relative mb-[20px] flex h-[84px] w-[84px] items-center justify-center rounded-full bg-white border border-[#E8ECF2] shadow-[0_12px_28px_rgba(46,184,170,0.16)]">
+                                        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#2EB8AA]/10 to-transparent" />
+                                        <Gift className="h-[38px] w-[38px] text-[#2EB8AA]" strokeWidth={1.8} />
+                                    </div>
+
+                                    {/* Tagline */}
+                                    <span className="text-[12px] font-extrabold tracking-[0.18em] text-[#2EB8AA] uppercase mb-[10px]">
+                                        {tagline}
+                                    </span>
+
+                                    {/* Headline */}
+                                    <h3 className="text-[28px] sm:text-[34px] font-extrabold tracking-[-0.8px] text-[#101827] leading-[1.25]">
+                                        {headline}
+                                    </h3>
+
+                                    {/* Subtext */}
+                                    <p className="mt-[12px] max-w-[440px] text-[15px] sm:text-[16px] leading-[24px] text-[#4A5462]">
+                                        {subtext}
+                                    </p>
+
+                                    {/* Free Badge */}
+                                    <div className="mt-[28px] inline-flex items-center gap-[10px] rounded-full border border-[#2EB8AA]/30 bg-[#F2FBF9] px-[24px] py-[12px] text-[15px] font-bold text-[#1C6964] shadow-sm">
+                                        <CheckCircle2 className="h-[20px] w-[20px] text-[#2EB8AA]" />
+                                        <span>{freeBadge}</span>
+                                    </div>
+                                </div>
+
+                                {/* Coming Soon Banner */}
+                                <div className="rounded-[24px] border border-[#E8ECF2] bg-white p-[20px] sm:p-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col sm:flex-row items-center justify-between gap-[16px]">
+                                    <div className="flex items-center gap-[16px]">
+                                        <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[16px] bg-[#F2FBF9] border border-[#2EB8AA]/20 text-[#2EB8AA]">
+                                            <CalendarDays className="h-[24px] w-[24px]" strokeWidth={2} />
                                         </div>
-                                    ))
-                                })()}
+                                        <div className={`flex flex-col ${isRtl ? "text-right" : "text-left"}`}>
+                                            <p className="text-[16px] font-bold text-[#101827]">{bannerTitle}</p>
+                                            <p className="mt-[2px] text-[13px] leading-[20px] text-[#6A727F]">{bannerSubtext}</p>
+                                        </div>
+                                    </div>
+                                    <div className="shrink-0 rounded-full border border-[#2EB8AA]/20 bg-[#F2FBF9] px-[20px] py-[10px] text-[13px] font-bold text-[#1C6964]">
+                                        {bannerButton}
+                                    </div>
+                                </div>
                             </div>
-                            <div className="mt-auto pt-[32px]">
-                                <button className="h-[48px] w-full flex items-center justify-center rounded-[12px] bg-[#2EB8AA] text-[15px] font-bold text-white transition-colors hover:bg-[#259b8f]">
-                                    {t("Get started free", "ابدأ مجاناً")}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    })()}
                 </div>
             </section>
 
@@ -990,7 +955,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                 {t("Frequently asked ", "الأسئلة ")}
                                 <span className="text-[#2EB8AA]">{t("questions", "الشائعة")}</span>
                             </h2>
-                            <p className="text-[18px] leading-[28px] text-[#4A5462]">{t("Everything you need to know about EmotionFlow.", "كل ما تحتاج لمعرفته عن EmotionFlow.")}</p>
+                            <p className="text-[18px] leading-[28px] text-[#4A5462]">{t("Everything you need to know about Shuoori.", "كل ما تحتاج لمعرفته عن Shuoori.")}</p>
                         </div>
                         <div className="rounded-[12px] bg-white p-[24px]">
                             <h3 className="text-[24px] font-semibold leading-[32px] text-[#101827]">{t("Can’t find answers?", "لم تجد الإجابة؟")}</h3>
@@ -1011,7 +976,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             {
                                 question: t("Is my emotional data private and secure?", "هل بياناتي العاطفية خاصة وآمنة؟"),
                                 answer: t(
-                                    "Absolutely. Your data is encrypted end-to-end and stored securely. We never sell, share, or use your emotional data for advertising. EmotionFlow is a private sanctuary your entries are yours alone.",
+                                    "Absolutely. Your data is encrypted end-to-end and stored securely. We never sell, share, or use your emotional data for advertising. Shuoori is a private sanctuary your entries are yours alone.",
                                     "نعم تماماً. بياناتك مشفرة بالكامل وتُخزن بأمان. لا نبيع أو نشارك بياناتك ولا نستخدمها للإعلانات. مدخلاتك ملك لك وحدك."
                                 ),
                             },
@@ -1020,16 +985,16 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                 answer: t("Most people log an emotion in under 60 seconds. You can tap, add context, and save quickly.", "أغلب المستخدمين يسجلون شعوراً خلال أقل من 60 ثانية. يمكنك الاختيار وإضافة السياق والحفظ بسرعة."),
                             },
                             {
-                                question: t("Is EmotionFlow a replacement for therapy?", "هل EmotionFlow بديل عن العلاج النفسي؟"),
-                                answer: t("No. EmotionFlow is a supportive self‑reflection tool and does not replace professional care.", "لا. EmotionFlow أداة للتأمل الذاتي ولا تُغني عن الرعاية المتخصصة."),
+                                question: t("Is Shuoori a replacement for therapy?", "هل Shuoori بديل عن العلاج النفسي؟"),
+                                answer: t("No. Shuoori is a supportive self‑reflection tool and does not replace professional care.", "لا. Shuoori أداة للتأمل الذاتي ولا تُغني عن الرعاية المتخصصة."),
                             },
                             {
                                 question: t("Can I export my data?", "هل يمكنني تصدير بياناتي؟"),
                                 answer: t("Yes, you can export your data anytime from the settings section.", "نعم، يمكنك تصدير بياناتك في أي وقت من الإعدادات."),
                             },
                             {
-                                question: t("What platforms is EmotionFlow available on?", "على أي منصات يتوفر EmotionFlow؟"),
-                                answer: t("EmotionFlow is available on iOS, Android, and web.", "يتوفر EmotionFlow على iOS وAndroid والويب."),
+                                question: t("What platforms is Shuoori available on?", "على أي منصات يتوفر Shuoori؟"),
+                                answer: t("Shuoori is available on iOS, Android, and web.", "يتوفر Shuoori على iOS وAndroid والويب."),
                             },
                             {
                                 question: t("Can I cancel my subscription at any time?", "هل يمكنني إلغاء الاشتراك في أي وقت؟"),
@@ -1080,8 +1045,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             </h2>
                             <p className="w-full mt-[8px] text-[16px] leading-[26px] text-[#4A5462]">
                                 {t(
-                                    "Download EmotionFlow for free. Start tracking in under a minute. Join 50,000+ people who've already transformed their emotional health.",
-                                    "حمّل EmotionFlow مجاناً. ابدأ التتبع خلال أقل من دقيقة. انضم لأكثر من 50,000 شخص ممن غيّروا صحتهم العاطفية."
+                                    "Download Shuoori for free. Start tracking in under a minute. Join 50,000+ people who've already transformed their emotional health.",
+                                    "حمّل Shuoori مجاناً. ابدأ التتبع خلال أقل من دقيقة. انضم لأكثر من 50,000 شخص ممن غيّروا صحتهم العاطفية."
                                 )}
                             </p>
 
@@ -1127,7 +1092,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
             <footer className="bg-[#F8F9FB] pb-[96px] pt-[64px]">
                 <div className="relative mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[64px] px-6 lg:px-[96px]">
                     <div className={`flex w-full flex-col gap-[24px] lg:items-center lg:justify-between text-[14px] text-[#4A5462] ${isRtl ? "lg:flex-row-reverse text-right" : "lg:flex-row text-left"}`}>
-                        <p>{t("© 2026 EmotionFlow. Made with for your wellbeing.", "© 2026 EmotionFlow. صُنع بعناية من أجل رفاهك.")}</p>
+                        <p>{t("© 2026 Shuoori. Made with care for your wellbeing.", "© 2026 Shuoori. صُنع بعناية من أجل رفاهك.")}</p>
                         <div className={`flex flex-wrap items-center gap-[24px] lg:gap-[32px] font-medium ${isRtl ? "flex-row-reverse" : ""}`}>
                             <a href="#features" className="hover:text-[#101827] transition-colors">{t("Features", "الميزات")}</a>
                             <a href="#how" className="hover:text-[#101827] transition-colors">{t("How it works", "كيف يعمل")}</a>

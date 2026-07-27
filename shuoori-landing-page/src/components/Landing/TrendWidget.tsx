@@ -32,13 +32,13 @@ export const TrendWidget = ({ locale, t }: TrendWidgetProps) => {
     ];
 
     const days = [
-        resolve("Sunday", "الأحد"),
-        resolve("Monday", "الإثنين"),
-        resolve("Tuesday", "الثلاثاء"),
-        resolve("Wednesday", "الأربعاء"),
-        resolve("Thursday", "الخميس"),
-        resolve("Friday", "الجمعة"),
-        resolve("Saturday", "السبت"),
+        { full: resolve("Sunday", "الأحد"), short: resolve("Sun", "أحد") },
+        { full: resolve("Monday", "الإثنين"), short: resolve("Mon", "إثنين") },
+        { full: resolve("Tuesday", "الثلاثاء"), short: resolve("Tue", "ثلاثاء") },
+        { full: resolve("Wednesday", "الأربعاء"), short: resolve("Wed", "أربعاء") },
+        { full: resolve("Thursday", "الخميس"), short: resolve("Thu", "خميس") },
+        { full: resolve("Friday", "الجمعة"), short: resolve("Fri", "جمعة") },
+        { full: resolve("Saturday", "السبت"), short: resolve("Sat", "سبت") },
     ];
 
     // Auto-cycle filters every 3.5 seconds
@@ -85,9 +85,9 @@ export const TrendWidget = ({ locale, t }: TrendWidgetProps) => {
             </div>
 
             {/* DOM Bar Chart animated by Framer Motion */}
-            <div className={`w-full mt-[16px] h-[180px] flex gap-[8px] ${isRtl ? "pr-[20px]" : "pl-[20px]"} relative`}>
+            <div className={`w-full mt-[16px] h-[190px] flex gap-[8px] ${isRtl ? "pr-[20px]" : "pl-[20px]"} relative pb-[32px]`}>
                 {/* Horizontal Grid lines and Y-Axis */}
-                <div className={`absolute ${isRtl ? "right-[-5px]" : "left-[-5px]"} top-0 bottom-[40px] w-full flex flex-col justify-between z-0`}>
+                <div className={`absolute ${isRtl ? "right-[-5px]" : "left-[-5px]"} top-0 bottom-[32px] w-full flex flex-col justify-between z-0`}>
                     {[10, 6, 3, 0].map((val) => (
                         <div key={val} className="flex items-center gap-[8px] w-full relative">
                             <span className={`text-[#6A727F] text-[11px] font-medium w-[12px] ${isRtl ? "text-left" : "text-right"}`}>{val}</span>
@@ -104,8 +104,8 @@ export const TrendWidget = ({ locale, t }: TrendWidgetProps) => {
                 </div>
 
                 {/* X-Axis and Bars */}
-                <div className={`relative w-full h-full flex items-end justify-between ${isRtl ? "pr-[12px]" : "pl-[12px]"} pb-[40px] z-10`}>
-                    {days.map((day, idx) => {
+                <div className={`relative w-full h-full flex items-end justify-between ${isRtl ? "pr-[12px]" : "pl-[12px]"} pb-[32px] z-10`}>
+                    {days.map((dayObj, idx) => {
                         const val = currentData[idx];
                         const isHighlighted = val >= 6.5; 
                         return (
@@ -119,8 +119,8 @@ export const TrendWidget = ({ locale, t }: TrendWidgetProps) => {
                                 ></motion.div>
                                 
                                 {/* X Axis Label */}
-                                <span className="absolute bottom-[-32px] text-[#6A727F] text-[10px] whitespace-nowrap -rotate-[50deg] origin-top-left font-medium select-none">
-                                    {day}
+                                <span className="absolute top-[100%] mt-[8px] text-[#6A727F] text-[11px] font-medium text-center whitespace-nowrap select-none">
+                                    {dayObj.short}
                                 </span>
                             </div>
                         );

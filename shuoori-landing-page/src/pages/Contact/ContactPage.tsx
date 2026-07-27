@@ -173,7 +173,7 @@ export default function ContactPage({ locale, setLocale }: ContactPageProps) {
                   {t("Frequently asked ", "الأسئلة ")}
                   <span className="text-[#2EB8AA]">{t("questions", "الشائعة")}</span>
                 </h2>
-                <p className="text-[18px] leading-[28px] text-[#4A5462]">{t("Everything you need to know about EmotionFlow.", "كل ما تحتاج لمعرفته عن EmotionFlow.")}</p>
+                <p className="text-[18px] leading-[28px] text-[#4A5462]">{t("Everything you need to know about Shuoori.", "كل ما تحتاج لمعرفته عن Shuoori.")}</p>
               </div>
               <div className="rounded-[12px] bg-white p-[24px]">
                 <h3 className="text-[24px] font-semibold leading-[32px] text-[#101827]">{t("Can’t find answers?", "لم تجد الإجابة؟")}</h3>
@@ -194,7 +194,7 @@ export default function ContactPage({ locale, setLocale }: ContactPageProps) {
                 {
                   question: t("Is my emotional data private and secure?", "هل بيانات مشاعري خاصة وآمنة؟"),
                   answer: t(
-                    "Absolutely. Your data is encrypted end-to-end and stored securely. We never sell, share, or use your emotional data for advertising. EmotionFlow is a private sanctuary your entries are yours alone.",
+                    "Absolutely. Your data is encrypted end-to-end and stored securely. We never sell, share, or use your emotional data for advertising. Shuoori is a private sanctuary your entries are yours alone.",
                     "نعم تماماً. بياناتك مشفرة بالكامل وتُخزن بأمان. لا نبيع أو نشارك بياناتك ولا نستخدمها للإعلانات. مدخلاتك ملك لك وحدك."
                   ),
                 },
@@ -203,16 +203,16 @@ export default function ContactPage({ locale, setLocale }: ContactPageProps) {
                   answer: t("Most people log an emotion in under 60 seconds. You can tap, add context, and save quickly.", "أغلب المستخدمين يسجلون شعوراً خلال أقل من 60 ثانية. يمكنك الاختيار وإضافة السياق والحفظ بسرعة."),
                 },
                 {
-                  question: t("Is EmotionFlow a replacement for therapy?", "هل EmotionFlow بديل عن العلاج النفسي؟"),
-                  answer: t("No. EmotionFlow is a supportive self‑reflection tool and does not replace professional care.", "لا. EmotionFlow أداة للتأمل الذاتي ولا تُغني عن الرعاية المتخصصة."),
+                  question: t("Is Shuoori a replacement for therapy?", "هل Shuoori بديل عن العلاج النفسي؟"),
+                  answer: t("No. Shuoori is a supportive self‑reflection tool and does not replace professional care.", "لا. Shuoori أداة للتأمل الذاتي ولا تُغني عن الرعاية المتخصصة."),
                 },
                 {
                   question: t("Can I export my data?", "هل يمكنني تصدير بياناتي؟"),
                   answer: t("Yes, you can export your data anytime from the settings section.", "نعم، يمكنك تصدير بياناتك في أي وقت من الإعدادات."),
                 },
                 {
-                  question: t("What platforms is EmotionFlow available on?", "على أي منصات يتوفر EmotionFlow؟"),
-                  answer: t("EmotionFlow is available on iOS, Android, and the web.", "EmotionFlow متوفر على iOS و Android والويب."),
+                  question: t("What platforms is Shuoori available on?", "على أي منصات يتوفر Shuoori؟"),
+                  answer: t("Shuoori is available on iOS, Android, and the web.", "Shuoori متوفر على iOS و Android والويب."),
                 },
                 {
                   question: t("Can I cancel my subscription at any time?", "هل يمكنني إلغاء اشتراكي في أي وقت؟"),
@@ -251,7 +251,7 @@ export default function ContactPage({ locale, setLocale }: ContactPageProps) {
       <footer className="bg-[#F8F9FB] pb-[96px] pt-[64px]">
         <div className="relative mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[64px] px-6 lg:px-[96px]">
           <div className={`flex w-full flex-col gap-[24px] lg:items-center lg:justify-between text-[14px] text-[#4A5462] ${isRtl ? "lg:flex-row-reverse text-right" : "lg:flex-row text-left"}`}>
-            <p>{t("© 2026 EmotionFlow. Made with for your wellbeing.", "© 2026 EmotionFlow. صُنع بعناية من أجل رفاهك.")}</p>
+            <p>{t("© 2026 Shuoori. Made with care for your wellbeing.", "© 2026 Shuoori. صُنع بعناية من أجل رفاهك.")}</p>
             <div className={`flex flex-wrap items-center gap-[24px] lg:gap-[32px] font-medium ${isRtl ? "flex-row-reverse" : ""}`}>
               <a href="/#features" className="hover:text-[#101827] transition-colors">{t("Features", "الميزات")}</a>
               <a href="/#how" className="hover:text-[#101827] transition-colors">{t("How it works", "كيف يعمل")}</a>

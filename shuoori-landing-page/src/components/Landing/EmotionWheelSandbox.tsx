@@ -1118,6 +1118,9 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                     {ACTIVITIES.map((act) => {
                                                         const labelStr = getLocalizedLabel(act, isRtl);
                                                         const isSelected = selectedActivities.includes(labelStr);
+                                                        const activeBg = activeEmotion?.color || "#101827";
+                                                        const activeTextColor = activeEmotion && (activeEmotion.id === "surprise" || activeEmotion.id === "joy") ? "#283244" : "#FFFFFF";
+
                                                         return (
                                                             <button
                                                                 key={act.en}
@@ -1130,10 +1133,10 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                                 }}
                                                                 className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${
                                                                     isSelected 
-                                                                        ? "text-white border-transparent shadow-sm scale-[1.03]"
-                                                                        : "bg-white/70 border-white/10 text-[#283244] hover:bg-white/90"
+                                                                        ? "border-transparent shadow-md scale-[1.03]"
+                                                                        : "bg-white/80 border-[#E4E6EA] text-[#283244] hover:bg-white shadow-sm"
                                                                 }`}
-                                                                style={isSelected && activeEmotion ? { backgroundColor: activeEmotion.color } : {}}
+                                                                style={isSelected ? { backgroundColor: activeBg, color: activeTextColor } : {}}
                                                             >
                                                                 {labelStr}
                                                             </button>
@@ -1155,6 +1158,9 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                     {LOCATIONS.map((loc) => {
                                                         const labelStr = getLocalizedLabel(loc, isRtl);
                                                         const isSelected = selectedLocation === labelStr;
+                                                        const activeBg = activeEmotion?.color || "#101827";
+                                                        const activeTextColor = activeEmotion && (activeEmotion.id === "surprise" || activeEmotion.id === "joy") ? "#283244" : "#FFFFFF";
+
                                                         return (
                                                             <button
                                                                 key={loc.en}
@@ -1163,10 +1169,10 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                                 }}
                                                                 className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${
                                                                     isSelected 
-                                                                        ? "text-white border-transparent shadow-sm scale-[1.03]"
-                                                                        : "bg-white/70 border-white/10 text-[#283244] hover:bg-white/90"
+                                                                        ? "border-transparent shadow-md scale-[1.03]"
+                                                                        : "bg-white/80 border-[#E4E6EA] text-[#283244] hover:bg-white shadow-sm"
                                                                 }`}
-                                                                style={isSelected && activeEmotion ? { backgroundColor: activeEmotion.color } : {}}
+                                                                style={isSelected ? { backgroundColor: activeBg, color: activeTextColor } : {}}
                                                             >
                                                                 {labelStr}
                                                             </button>
@@ -1188,6 +1194,9 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                     {PEOPLE.map((pep) => {
                                                         const labelStr = getLocalizedLabel(pep, isRtl);
                                                         const isSelected = selectedPeople.includes(labelStr);
+                                                        const activeBg = activeEmotion?.color || "#101827";
+                                                        const activeTextColor = activeEmotion && (activeEmotion.id === "surprise" || activeEmotion.id === "joy") ? "#283244" : "#FFFFFF";
+
                                                         return (
                                                             <button
                                                                 key={pep.en}
@@ -1200,10 +1209,10 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                                 }}
                                                                 className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${
                                                                     isSelected 
-                                                                        ? "text-white border-transparent shadow-sm scale-[1.03]"
-                                                                        : "bg-white/70 border-white/10 text-[#283244] hover:bg-white/90"
+                                                                        ? "border-transparent shadow-md scale-[1.03]"
+                                                                        : "bg-white/80 border-[#E4E6EA] text-[#283244] hover:bg-white shadow-sm"
                                                                 }`}
-                                                                style={isSelected && activeEmotion ? { backgroundColor: activeEmotion.color } : {}}
+                                                                style={isSelected ? { backgroundColor: activeBg, color: activeTextColor } : {}}
                                                             >
                                                                 {labelStr}
                                                             </button>

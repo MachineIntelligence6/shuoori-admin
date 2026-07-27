@@ -106,14 +106,6 @@
           "ar": "تنزيل من آب ستور"
         },
         "key": "legacy/mobile-app-store-badge.svg"
-      },
-      {
-        "url": "/dummy-hero-video.mp4",
-        "alt": {
-          "en": "Shuoori app preview video",
-          "ar": "فيديو معاينة تطبيق Shuoori"
-        },
-        "key": "legacy/dummy-hero-video.mp4"
       }
     ],
     "items": [
@@ -480,147 +472,48 @@
   {
     "key": "pricing",
     "title": {
-      "en": "Invest in your emotional wellness",
-      "ar": "استثمر في رفاهك العاطفي"
+      "en": "Simple, Transparent Pricing",
+      "ar": "أسعار بسيطة وشفافة"
     },
     "subtitle": {
-      "en": "Simple Pricing",
-      "ar": "خطط الاشتراك"
+      "en": "PRICING",
+      "ar": "الأسعار"
     },
     "body": {
-      "en": "Start free, upgrade when you're ready. No hidden fees, no long-term contracts.",
-      "ar": "ابدأ مجانا، وحدث عندما تكون مستعدا. بدون رسوم خفية أو عقود طويلة."
+      "en": "We believe in keeping things simple. Enjoy full access to Shuoori today — with more options coming soon.",
+      "ar": "نؤمن بتبسيط الأمور. استمتع بالوصول الكامل إلى Shuoori اليوم — مع خيارات إضافية قادمة قريباً."
     },
     "images": [],
     "items": [
       {
-        "name": {
-          "en": "Free plan",
-          "ar": "الخطة المجانية"
+        "tagline": {
+          "en": "FOR NOW",
+          "ar": "حالياً"
         },
-        "badge": {
-          "en": "",
-          "ar": ""
+        "headline": {
+          "en": "Enjoy Unlimited Access!",
+          "ar": "استمتع بجميع الميزات مجاناً!"
         },
-        "monthlyPrice": "$0.00/mth",
-        "yearlyPrice": "$0.00/mth",
-        "description": {
-          "en": "Perfect for getting started with emotion tracking.",
-          "ar": "مثالية للبدء في تتبع المشاعر."
+        "subtext": {
+          "en": "All features are available to you right now. No payments, no limits.",
+          "ar": "جميع الميزات متاحة لك الآن. بدون أية مدفوعات وبدون حدود."
         },
-        "features": [
-          {
-            "en": "Basic emotion logging (up to 50 emotions/month)",
-            "ar": "تسجيل المشاعر الأساسي (حتى 50 شعورا شهريا)"
-          },
-          {
-            "en": "Simple emotion wheel interface",
-            "ar": "واجهة عجلة مشاعر بسيطة"
-          },
-          {
-            "en": "Basic dashboard view",
-            "ar": "عرض لوحة تحكم أساسية"
-          },
-          {
-            "en": "7-day emotion history",
-            "ar": "سجل المشاعر لمدة 7 أيام"
-          },
-          {
-            "en": "Email reminders (1 per week)",
-            "ar": "تذكير عبر البريد الإلكتروني (مرة أسبوعيا)"
-          }
-        ],
-        "ctaLabel": {
-          "en": "Get started free",
-          "ar": "ابدأ مجانا"
+        "freeBadge": {
+          "en": "100% Free to Use",
+          "ar": "مجاني 100% للمستخدمين"
         },
-        "featured": false
-      },
-      {
-        "name": {
-          "en": "Premium Plan",
-          "ar": "الخطة المتميزة"
+        "bannerTitle": {
+          "en": "More Plans Coming Soon",
+          "ar": "المزيد من الخطط قريباً"
         },
-        "badge": {
-          "en": "Most popular",
-          "ar": "الأكثر شعبية"
+        "bannerSubtext": {
+          "en": "We're working on exciting premium plans to bring you even more.",
+          "ar": "نعمل على تصميم خطط احترافية مميزة لتوفير المزيد من الخصائص."
         },
-        "monthlyPrice": "$9.99/mth",
-        "yearlyPrice": "17/year(Save $99.99)",
-        "description": {
-          "en": "Everything in the personal plan plus advanced analytics and export.",
-          "ar": "كل ما في الخطة الشخصية إضافة إلى تحليلات متقدمة وتصدير البيانات."
-        },
-        "features": [
-          {
-            "en": "Everything in the personal plan",
-            "ar": "كل ما في الخطة الشخصية"
-          },
-          {
-            "en": "Advanced analytics",
-            "ar": "تحليلات متقدمة"
-          },
-          {
-            "en": "Data export",
-            "ar": "تصدير البيانات"
-          },
-          {
-            "en": "Detailed monthly reports",
-            "ar": "تقارير شهرية مفصلة"
-          },
-          {
-            "en": "Schedule custom reminders",
-            "ar": "جدولة تذكيرات مخصصة"
-          }
-        ],
-        "ctaLabel": {
-          "en": "Get started",
-          "ar": "ابدأ الآن"
-        },
-        "featured": true
-      },
-      {
-        "name": {
-          "en": "Personal Plan",
-          "ar": "الخطة الشخصية"
-        },
-        "badge": {
-          "en": "",
-          "ar": ""
-        },
-        "monthlyPrice": "$4.99/mth",
-        "yearlyPrice": "17/year(Save $49.99)",
-        "description": {
-          "en": "Expanded tracking and weekly insights for personal growth.",
-          "ar": "تتبع موسع ورؤى أسبوعية للنمو الشخصي."
-        },
-        "features": [
-          {
-            "en": "Recording Unlimited Emotion",
-            "ar": "تسجيل مشاعر غير محدود"
-          },
-          {
-            "en": "Capturing the context (people, location, activity)",
-            "ar": "تسجيل السياق (الأشخاص، الموقع، النشاط)"
-          },
-          {
-            "en": "A 90-day history of emotions",
-            "ar": "سجل المشاعر لمدة 90 يوما"
-          },
-          {
-            "en": "Weekly trend analysis",
-            "ar": "تحليل الاتجاهات الأسبوعية"
-          },
-          {
-            "en": "Export data (CSV/PDF)",
-            "ar": "تصدير البيانات (CSV/PDF)"
-          }
-        ],
-        "ctaLabel": {
-          "en": "Get started",
-          "ar": "ابدأ الآن"
-        },
-        "featured": false
+        "bannerButton": {
+          "en": "Stay Tuned!",
+          "ar": "ترقبوا الجديد!"
+        }
       }
     ],
     "order": 6,
@@ -720,16 +613,7 @@
       "en": "Download Shuoori for free. Start tracking in under a minute. Join 50,000+ people who've already transformed their emotional health.",
       "ar": "حمل Shuoori مجانا. ابدأ التتبع خلال أقل من دقيقة. انضم لأكثر من 50,000 شخص ممن غيروا صحتهم العاطفية."
     },
-    "images": [
-      {
-        "url": "https://www.figma.com/api/mcp/asset/5605f90f-08ab-4d7f-9039-4a64a1f3cdf0",
-        "alt": {
-          "en": "Emotion wheel background",
-          "ar": "خلفية عجلة المشاعر"
-        },
-        "key": "legacy/final-cta-blob"
-      }
-    ],
+    "images": [],
     "items": [
       {
         "title": {
