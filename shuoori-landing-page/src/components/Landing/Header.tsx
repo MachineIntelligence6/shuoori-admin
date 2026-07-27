@@ -77,17 +77,21 @@ const Header = ({
                     {showLocaleToggle ? (
                         <button
                             onClick={() => setLocale(locale === "en" ? "ar" : "en")}
-                            className="flex h-[36px] items-center justify-center rounded-[12px] border border-[#E4E6EA] bg-white px-[12px] text-[14px] font-medium text-[#4A5462] transition-colors hover:bg-gray-50"
+                            className="inline-flex h-[36px] min-w-[56px] items-center justify-center rounded-[12px] border border-[#E4E6EA] bg-white px-[14px] text-[14px] font-medium leading-none text-[#4A5462] transition-colors hover:bg-gray-50"
                         >
-                            {nextLocaleLabel}
+                            <span className={`inline-flex items-center justify-center leading-none ${locale === "en" ? "-translate-y-[2px]" : "translate-y-0"}`}>
+                                {nextLocaleLabel}
+                            </span>
                         </button>
                     ) : null}
 
                     <button
-                        className="hidden h-[36px] items-center justify-center rounded-[12px] bg-[#2EB8AA] px-[12px] text-[14px] font-medium text-white transition-colors hover:bg-[#259b8f] lg:flex"
+                        className="hidden h-[36px] items-center justify-center rounded-[12px] bg-[#2EB8AA] px-[20px] text-[14px] font-semibold leading-none text-white transition-colors hover:bg-[#259b8f] lg:inline-flex"
                         onClick={() => window.location.href = appUrl}
                     >
-                        {actionLabel}
+                        <span className="inline-flex items-center justify-center leading-none">
+                            {actionLabel}
+                        </span>
                     </button>
 
                     <button
@@ -114,10 +118,12 @@ const Header = ({
                         ))}
                     </nav>
                     <button
-                        className="flex h-[44px] w-full items-center justify-center rounded-[12px] bg-[#2EB8AA] px-[12px] text-[16px] font-medium text-white transition-colors hover:bg-[#259b8f]"
+                        className="flex h-[44px] w-full items-center justify-center rounded-[12px] bg-[#2EB8AA] px-[12px] text-[16px] font-medium leading-none text-white transition-colors hover:bg-[#259b8f]"
                         onClick={() => window.location.href = appUrl}
                     >
-                        {actionLabel}
+                        <span className="inline-flex items-center justify-center leading-none">
+                            {actionLabel}
+                        </span>
                     </button>
                 </div>
             )}

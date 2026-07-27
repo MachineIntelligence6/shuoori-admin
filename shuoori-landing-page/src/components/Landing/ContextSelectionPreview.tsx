@@ -127,10 +127,10 @@ function PreviewCard({
                 repeat: Infinity,
                 repeatType: "mirror",
             }}
-            className={`absolute rounded-[18px] bg-white p-[18px] shadow-[0_18px_34px_rgba(16,24,39,0.12)] ${className}`}
+            className={`rounded-[18px] bg-white p-[16px] shadow-[0_18px_34px_rgba(16,24,39,0.12)] sm:p-[18px] ${className}`}
         >
-            <h4 className="text-[18px] font-semibold text-[#1F2937]">{getText(card.title, isRtl)}</h4>
-            <div className="mt-[14px] grid grid-cols-2 gap-x-[12px] gap-y-[10px]">
+            <h4 className="text-[17px] font-semibold leading-tight text-[#1F2937] sm:text-[18px]">{getText(card.title, isRtl)}</h4>
+            <div className="mt-[14px] grid grid-cols-2 gap-x-[8px] gap-y-[10px] sm:gap-x-[12px]">
                 {card.options.map((option, index) => (
                     <RadioOption
                         key={option.en}
@@ -158,14 +158,14 @@ export default function ContextSelectionPreview({ locale }: ContextSelectionPrev
     const activeSet = SEQUENCE[stepIndex]
 
     return (
-        <div className="relative h-[360px] w-full max-w-[620px]">
+        <div className="relative flex h-auto min-h-[560px] w-full max-w-[620px] flex-col items-center gap-4 overflow-visible px-3 py-2 md:block md:h-[360px] md:min-h-0 md:px-0 md:py-0">
             <div className="pointer-events-none absolute inset-x-[10%] top-[18%] h-[58%] rounded-full bg-[#2EB8AA]/10 blur-3xl" />
 
             <PreviewCard
                 card={CARDS[0]}
                 activeIndex={activeSet[0]}
                 isRtl={isRtl}
-                className={`top-[64px] w-[360px] ${isRtl ? "right-[0px]" : "left-[0px]"}`}
+                className={`relative z-10 w-full max-w-[360px] md:absolute md:top-[64px] md:w-[360px] ${isRtl ? "md:right-[0px]" : "md:left-[0px]"}`}
                 
                 
             />
@@ -173,14 +173,14 @@ export default function ContextSelectionPreview({ locale }: ContextSelectionPrev
                 card={CARDS[1]}
                 activeIndex={activeSet[1]}
                 isRtl={isRtl}
-                className={`top-[8px] w-[304px] ${isRtl ? "left-[36px]" : "left-[284px]"}`}
+                className={`relative z-20 w-full max-w-[360px] md:absolute md:top-[8px] md:w-[304px] ${isRtl ? "md:left-[36px]" : "md:left-[284px]"}`}
                 
             />
             <PreviewCard
                 card={CARDS[2]}
                 activeIndex={activeSet[2]}
                 isRtl={isRtl}
-                className={`top-[228px] w-[332px] ${isRtl ? "left-[72px]" : "left-[218px]"}`}
+                className={`relative z-30 w-full max-w-[360px] md:absolute md:top-[228px] md:w-[332px] ${isRtl ? "md:left-[72px]" : "md:left-[218px]"}`}
                 
             />
         </div>

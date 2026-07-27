@@ -52,10 +52,10 @@ export const TrendWidget = ({ locale, t }: TrendWidgetProps) => {
     const currentData = dataProfiles[activeIndex];
 
     return (
-        <div className="flex flex-col gap-[20px] rounded-[24px] bg-white p-[24px] lg:p-[28px] shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-[#f3f4f6] w-full max-w-[420px]">
+        <div className="flex flex-col gap-[16px] rounded-[20px] bg-white p-[18px] shadow-[0_12px_32px_rgba(0,0,0,0.08)] border border-[#f3f4f6] w-full max-w-[360px] sm:max-w-[420px] sm:gap-[20px] sm:rounded-[24px] sm:p-[24px] lg:p-[28px]">
             <div className="flex items-start justify-between gap-[12px]">
-                <p className="text-[20px] font-bold leading-[28px] text-[#101827]">{resolve("Trend", "الاتجاه")}</p>
-                <div className="flex flex-none items-center gap-[6px] rounded-[12px] border border-[#E4E4E7] bg-white px-[14px] py-[8px] text-[14px] font-medium leading-[20px] text-[#101827] cursor-pointer hover:bg-gray-50 transition-colors">
+                <p className="text-[18px] font-bold leading-[26px] text-[#101827] sm:text-[20px] sm:leading-[28px]">{resolve("Trend", "الاتجاه")}</p>
+                <div className="flex flex-none items-center gap-[6px] rounded-[12px] border border-[#E4E4E7] bg-white px-[12px] py-[7px] text-[13px] font-medium leading-[18px] text-[#101827] cursor-pointer hover:bg-gray-50 transition-colors sm:px-[14px] sm:py-[8px] sm:text-[14px] sm:leading-[20px]">
                     {resolve("Weekly", "أسبوعي")}
                     <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 6L8 10L12 6" stroke="#4A5462" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -64,28 +64,28 @@ export const TrendWidget = ({ locale, t }: TrendWidgetProps) => {
             </div>
 
             {/* Auto-cycling Trend graph options */}
-            <div className={`grid grid-cols-3 gap-y-[16px] gap-x-[12px] mt-[4px] ${isRtl ? "text-right" : "text-left"}`}>
+            <div className={`grid grid-cols-3 gap-x-[6px] gap-y-[10px] mt-[2px] sm:mt-[4px] sm:gap-x-[12px] sm:gap-y-[16px] ${isRtl ? "text-right" : "text-left"}`}>
                 {filters.map((name, idx) => {
                     const isActive = idx === activeIndex;
                     return (
                         <div 
                             key={idx}
                             onClick={() => setActiveIndex(idx)}
-                            className={`flex items-center gap-[6px] rounded-[20px] px-[8px] py-[6px] w-fit cursor-pointer transition-all duration-300 ${isActive ? 'border border-[#2EB8AA] opacity-100' : 'border border-transparent px-[0px] opacity-70 hover:opacity-100'}`}
+                            className={`flex items-center gap-[4px] rounded-[20px] px-[6px] py-[5px] w-fit cursor-pointer transition-all duration-300 sm:gap-[6px] sm:px-[8px] sm:py-[6px] ${isActive ? 'border border-[#2EB8AA] opacity-100' : 'border border-transparent px-[0px] opacity-70 hover:opacity-100'}`}
                         >
                             <motion.div 
                                 layout
                                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                                className={`w-[14px] h-[14px] rounded-full border-[1.5px] ${isActive ? 'border-[4px] border-[#2EB8AA]' : 'border-[#E4E6EA]'}`}
+                                className={`h-[12px] w-[12px] rounded-full border-[1.5px] sm:h-[14px] sm:w-[14px] ${isActive ? 'border-[4px] border-[#2EB8AA]' : 'border-[#E4E6EA]'}`}
                             ></motion.div>
-                            <span className="text-[13px] font-bold text-[#101827]">{name}</span>
+                            <span className="text-[11px] font-bold text-[#101827] sm:text-[13px]">{name}</span>
                         </div>
                     );
                 })}
             </div>
 
             {/* DOM Bar Chart animated by Framer Motion */}
-            <div className={`w-full mt-[16px] h-[190px] flex gap-[8px] ${isRtl ? "pr-[20px]" : "pl-[20px]"} relative pb-[32px]`}>
+            <div className={`w-full mt-[10px] h-[160px] flex gap-[8px] ${isRtl ? "pr-[18px] sm:pr-[20px]" : "pl-[18px] sm:pl-[20px]"} relative pb-[30px] sm:mt-[16px] sm:h-[190px] sm:pb-[32px]`}>
                 {/* Horizontal Grid lines and Y-Axis */}
                 <div className={`absolute ${isRtl ? "right-[-5px]" : "left-[-5px]"} top-0 bottom-[32px] w-full flex flex-col justify-between z-0`}>
                     {[10, 6, 3, 0].map((val) => (

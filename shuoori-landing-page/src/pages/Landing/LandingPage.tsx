@@ -105,8 +105,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
             name: t("Sarah M.", "سارة جميل"),
             title: t("Therapist · Dubai", "أخصائية نفسية · دبي"),
             image: "/Pexels Photo by Mikhail Nilov.png",
-            imageClass: "absolute bottom-0 right-[0px] w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none",
-            imageClassRtl: "absolute bottom-0 left-[0px] right-auto w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none"
+            imageClass: "absolute bottom-0 right-[-10px] w-[172px] sm:right-[0px] sm:w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none",
+            imageClassRtl: "absolute bottom-0 left-[-10px] right-auto w-[172px] sm:left-[0px] sm:w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none"
         },
         {
             quote: t(
@@ -116,8 +116,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
             name: t("Ahmed K.", "أحمد جميل"),
             title: t("Software Engineer · Riyadh", "مهندس برمجيات · الرياض"),
             image: "/Pexels Photo by Khaled Saleh.png",
-            imageClass: "absolute bottom-0 right-[0px] w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none",
-            imageClassRtl: "absolute bottom-0 left-[0px] right-auto w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none"
+            imageClass: "absolute bottom-0 right-[-10px] w-[172px] sm:right-[0px] sm:w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none",
+            imageClassRtl: "absolute bottom-0 left-[-10px] right-auto w-[172px] sm:left-[0px] sm:w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none"
         },
         {
             quote: t(
@@ -127,8 +127,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
             name: t("Layla H.", "ليلى حسن"),
             title: t("UI/UX Designer · Abu Dhabi", "مصممة واجهات · أبو ظبي"),
             image: "/hero-avatar-1.png",
-            imageClass: "absolute bottom-0 right-[0px] w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none",
-            imageClassRtl: "absolute bottom-0 left-[0px] right-auto w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none"
+            imageClass: "absolute bottom-0 right-[-10px] w-[172px] sm:right-[0px] sm:w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none",
+            imageClassRtl: "absolute bottom-0 left-[-10px] right-auto w-[172px] sm:left-[0px] sm:w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none"
         },
         {
             quote: t(
@@ -138,8 +138,8 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
             name: t("Omar F.", "عمر فاروق"),
             title: t("Marketing Lead · Muscat", "مدير تسويق · مسقط"),
             image: "/hero-avatar-2.png",
-            imageClass: "absolute bottom-0 right-[0px] w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none",
-            imageClassRtl: "absolute bottom-0 left-[0px] right-auto w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none"
+            imageClass: "absolute bottom-0 right-[-10px] w-[172px] sm:right-[0px] sm:w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none",
+            imageClassRtl: "absolute bottom-0 left-[-10px] right-auto w-[172px] sm:left-[0px] sm:w-[220px] md:w-[280px] lg:w-[260px] xl:w-[300px] z-0 pointer-events-none"
         }
     ]
     const analyticsVectors = {
@@ -253,7 +253,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
         <div className="min-h-screen bg-[#FCFBF8] text-[#101827]">
             <Header locale={locale} setLocale={setLocale} t={t} />
 
-            <section className="relative overflow-hidden bg-[#FCFBF8] pb-[160px] pt-[80px]">
+            <section className="relative overflow-hidden bg-[#FCFBF8] pb-[56px] pt-[56px] sm:pb-[160px] sm:pt-[80px]">
                 {/* Concentric Circles Background */}
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[160vw] min-w-[1200px] max-w-[2400px] opacity-[0.04] pointer-events-none z-0">
                     <svg viewBox="0 0 1000 1000" fill="none" className="w-full h-full">
@@ -432,39 +432,39 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                     </div>
                 </div>
 
-                <div className="mx-auto mt-[72px] w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] px-6 lg:px-[32px] relative z-20">
-                    <div className={`flex flex-col gap-[24px] rounded-[12px] bg-white p-[24px] shadow-[0_8px_16px_rgba(0,0,0,0.06)] lg:flex-row lg:items-center lg:justify-between lg:p-[40px] xl:p-[48px] border border-[#f3f4f6] ${isRtl ? "items-start lg:flex-row-reverse text-right" : "items-start text-left"}`}>
+                <div className="mx-auto mt-[32px] w-full max-w-[1200px] px-6 relative z-20 sm:mt-[72px] lg:max-w-[1280px] lg:px-[32px] xl:max-w-[1360px] 2xl:max-w-[1480px]">
+                    <div className={`grid grid-cols-2 gap-x-[18px] gap-y-[24px] rounded-[16px] bg-white p-[22px] text-center shadow-[0_12px_28px_rgba(16,24,39,0.06)] lg:flex lg:items-center lg:justify-between lg:gap-[24px] lg:rounded-[12px] lg:p-[40px] xl:p-[48px] border border-[#f3f4f6] ${isRtl ? "lg:flex-row-reverse lg:text-right" : "lg:text-left"}`}>
                         {[
                             [50, "K", t("Active Users", "المستخدمون النشطون"), 0],
                             [2, "M", t("Emotions Logged", "المشاعر المسجلة"), 0],
                             [4.9, "", t("App Store Rating", "تقييم متجر التطبيقات"), 1],
                             [94, "", t("Report Improved Wellness", "أبلغوا بتحسن الرفاه"), 0],
                         ].map(([val, prefix, label, decimals], index) => (
-                            <div key={label as string} className="flex flex-1 w-full lg:w-auto flex-col gap-[8px] items-start">
-                                <div className="text-[48px] font-semibold leading-[1.1] text-[#101827] flex items-center">
+                            <div key={label as string} className={`flex min-w-0 flex-col items-center gap-[6px] lg:flex-1 lg:w-auto lg:gap-[8px] ${isRtl ? "lg:items-end" : "lg:items-start"}`}>
+                                <div className="text-[34px] font-semibold leading-none tracking-[-0.8px] text-[#101827] flex items-center sm:text-[40px] lg:text-[48px] lg:leading-[1.1] lg:tracking-normal">
                                     <AnimatedStatistic target={val as number} suffix={prefix as string} decimals={decimals as number} />
                                     {index === 0 || index === 1 ? <span className="text-[#2EB8AA]">+</span> : null}
                                     {index === 2 ? <span className="text-[#2EB8AA]">★</span> : null}
                                     {index === 3 ? <span className="text-[#2EB8AA]">%</span> : null}
                                 </div>
-                                <div className="text-[20px] leading-[30px] text-[#4A5462]">{label as string}</div>
+                                <div className="text-[14px] leading-[20px] text-[#4A5462] sm:text-[16px] sm:leading-[24px] lg:text-[20px] lg:leading-[30px]">{label as string}</div>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            <section id="features" className="bg-[#FCFBF8] py-[128px]">
-                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[64px] px-6 lg:px-[96px]">
+            <section id="features" className="bg-[#FCFBF8] py-[64px] sm:py-[128px]">
+                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[40px] px-6 sm:gap-[64px] lg:px-[96px]">
                     <div className="flex flex-col items-center gap-[12px] text-center">
                         <div className="flex items-center justify-center rounded-full border-2 border-[#2EB8AA] bg-[#F2FBF9] px-[18px] py-[8px] text-[16px] text-[#1C6964]">
                             {t("Simple Process", "عملية بسيطة")}
                         </div>
-                        <h2 className="text-[48px] font-semibold leading-[1.1] tracking-[-1.92px]">
+                        <h2 className="text-[34px] font-semibold leading-[1.12] tracking-[-0.8px] sm:text-[48px] sm:tracking-[-1.92px]">
                             {t("Start tracking in ", "ابدأ التتبع في ")}
                             <span className="text-[#2EB8AA]">{t("4 simple steps", "4 خطوات بسيطة")}</span>
                         </h2>
-                        <p className="max-w-[px] w-full text-[18px] leading-[28px] text-[#4A5462]">
+                        <p className="max-w-[px] w-full text-[16px] leading-[26px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">
                             {t(
                                 "From logging your first emotion to receiving personalized monthly reports Shuoori guides you every step of the way.",
                                 "من تسجيل أول شعور لك إلى استلام تقارير شهرية مخصصة، يرشدك Shuoori في كل خطوة على الطريق."
@@ -472,16 +472,16 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                         </p>
                     </div>
 
-                    <div className="flex w-full flex-col gap-[96px]">
-                        <div className={`flex w-full flex-col items-center gap-[48px] lg:gap-[96px] lg:flex-row`}>
+                    <div className="flex w-full flex-col gap-[56px] sm:gap-[96px]">
+                        <div className={`flex w-full flex-col items-center gap-[32px] sm:gap-[48px] lg:gap-[96px] lg:flex-row`}>
                             <div className="flex-1">
                                 <div className={`flex flex-col gap-[20px] ${isRtl ? "text-right items-start" : "text-left items-start"}`}>
                                     <div className="flex h-[50px] w-[50px] items-center justify-center rounded-[15px] bg-[#2EB8AA] text-[18px] font-semibold text-white">
                                         01
                                     </div>
                                     <div className="flex flex-col gap-[16px]">
-                                        <h3 className="text-[30px] font-semibold leading-[38px]">{t("Pick your emotion", "اختر شعورك")}</h3>
-                                        <p className="text-[18px] leading-[28px] text-[#4A5462]">
+                                        <h3 className="text-[24px] font-semibold leading-[31px] sm:text-[30px] sm:leading-[38px]">{t("Pick your emotion", "اختر شعورك")}</h3>
+                                        <p className="text-[16px] leading-[25px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">
                                             {t(
                                                 "Choose from our intuitive emotion wheel. From joy to anxiety, we have all the shades of feeling covered with clear labels.",
                                                 "اختر من عجلة المشاعر البديهية. من الفرح إلى القلق، لدينا جميع درجات الشعور بتسميات واضحة."
@@ -495,7 +495,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             </div>
                         </div>
 
-                        <div className={`flex w-full flex-col items-center gap-[48px] lg:gap-[104px] lg:flex-row`}>
+                        <div className={`flex w-full flex-col items-center gap-[32px] sm:gap-[48px] lg:gap-[104px] lg:flex-row`}>
                             <div className={`flex w-full max-w-[620px] flex-1 justify-center ${isRtl ? "lg:justify-start" : "lg:justify-start"}`}>
                                 <ContextSelectionPreview locale={locale} />
                             </div>
@@ -517,15 +517,15 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             </div>
                         </div>
 
-                        <div className={`flex w-full flex-col items-center gap-[48px] lg:gap-[96px] lg:flex-row`}>
+                        <div className={`flex w-full flex-col items-center gap-[32px] sm:gap-[48px] lg:gap-[96px] lg:flex-row`}>
                             <div className={`flex w-full max-w-[520px] flex-1 justify-center ${isRtl ? "lg:justify-start" : "lg:justify-start"}`}>
                                 <div className={`flex flex-col gap-[20px] ${isRtl ? "text-right items-start" : "text-left items-start"}`}>
                                     <div className="flex h-[50px] w-[50px] items-center justify-center rounded-[15px] bg-[#2EB8AA] text-[18px] font-semibold text-white">
                                         03
                                     </div>
                                     <div className="flex flex-col gap-[16px]">
-                                        <h3 className="text-[30px] font-semibold leading-[38px]">{t("Define any additional details", "أضف أي تفاصيل إضافية")}</h3>
-                                        <p className="text-[18px] leading-[28px] text-[#4A5462]">
+                                        <h3 className="text-[24px] font-semibold leading-[31px] sm:text-[30px] sm:leading-[38px]">{t("Define any additional details", "أضف أي تفاصيل إضافية")}</h3>
+                                        <p className="text-[16px] leading-[25px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">
                                             {t(
                                                 "Add a journal entry by typing or using voice-to-text. Guided prompts help when you're unsure what to write.",
                                                 "أضف مذكّرة بكتابة النص أو باستخدام تحويل الصوت إلى نص. تساعدك الإرشادات عندما لا تعرف ماذا تكتب."
@@ -569,18 +569,18 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             </div>
                         </div>
 
-                        <div className={`flex w-full flex-col items-center gap-[48px] lg:gap-[96px] lg:flex-row`}>
-                            <div className="flex-1 w-full flex justify-center py-[40px]">
-                                <div className="relative w-full max-w-[420px]">
+                        <div className={`flex w-full flex-col items-center gap-[32px] sm:gap-[48px] lg:gap-[96px] lg:flex-row`}>
+                            <div className="flex-1 w-full flex justify-center py-[20px] sm:py-[40px]">
+                                <div className="relative w-full max-w-[360px] pt-[56px] sm:max-w-[420px] sm:pt-0">
                                     {/* The main Trend card */}
                                     <div className="relative z-10 w-full">
                                         <TrendWidget locale={locale} />
                                     </div>
 
                                     {/* The floating tilted pill */}
-                                    <div className={`absolute top-[-35px] lg:top-[-45px] ${isRtl ? "right-[-20px] lg:right-[-70px]" : "left-[-20px] lg:left-[-70px]"} -rotate-[16deg] flex items-center justify-center gap-[10px] rounded-[12px] bg-white px-[20px] py-[16px] shadow-[0_16px_40px_rgba(0,0,0,0.08)] border border-[#f3f4f6] z-20 w-max`}>
-                                        <ThumbsUp className="h-[26px] w-[26px] text-[#2EB8AA]" strokeWidth={2} />
-                                        <p className="text-[14px] font-bold leading-[18px] text-[#101827]">
+                                    <div className={`absolute top-0 sm:top-[-35px] lg:top-[-45px] ${isRtl ? "right-[14px] lg:right-[-70px]" : "left-[14px] lg:left-[-70px]"} -rotate-[8deg] sm:-rotate-[16deg] flex max-w-[190px] items-center justify-center gap-[8px] rounded-[12px] bg-white px-[12px] py-[8px] shadow-[0_16px_40px_rgba(0,0,0,0.08)] border border-[#f3f4f6] z-20 sm:w-max sm:max-w-none sm:gap-[10px] sm:px-[20px] sm:py-[16px]`}>
+                                        <ThumbsUp className="h-[20px] w-[20px] shrink-0 text-[#2EB8AA] sm:h-[26px] sm:w-[26px]" strokeWidth={2} />
+                                        <p className="text-[12px] font-bold leading-[16px] text-[#101827] sm:text-[14px] sm:leading-[18px]">
                                             {t("You were 76%", "كنت إيجابياً بنسبة 76%")}
                                             <br />
                                             {t("positive this week", "هذا الأسبوع")}
@@ -593,9 +593,9 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                     <div className="flex h-[50px] w-[50px] items-center justify-center rounded-[15px] bg-[#2EB8AA] text-[18px] font-semibold text-white">
                                         04
                                     </div>
-                                    <div className="flex flex-col gap-[16px]">
-                                        <h3 className="text-[30px] font-semibold leading-[38px]">{t("Watch notice, trends and pattern", "تابع الملاحظات والاتجاهات والأنماط")}</h3>
-                                        <p className="text-[18px] leading-[28px] text-[#4A5462]">
+                                    <div className="flex flex-col gap-[12px] sm:gap-[16px]">
+                                        <h3 className="text-[24px] font-semibold leading-[31px] sm:text-[30px] sm:leading-[38px]">{t("Watch notice, trends and pattern", "تابع الملاحظات والاتجاهات والأنماط")}</h3>
+                                        <p className="text-[16px] leading-[25px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">
                                             {t(
                                                 "After a week or month, review how happy, calm or anxious you were and get AI insights to improve your wellbeing.",
                                                 "بعد أسبوع أو شهر، راجع مدى سعادتك أو هدوئك أو قلقك واحصل على رؤى الذكاء الاصطناعي لتحسين رفاهك."
@@ -609,17 +609,17 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                 </div>
             </section>
 
-            <section id="how" className="bg-[#FCFBF8] py-[128px]">
-                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col gap-[64px] px-6 lg:px-[96px]">
-                    <div className={`flex w-[768px] max-w-full flex-col gap-[12px] ${isRtl ? "text-right items-start" : "text-left items-start"}`}>
+            <section id="how" className="bg-[#FCFBF8] py-[64px] sm:py-[128px]">
+                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col gap-[32px] px-6 sm:gap-[64px] lg:px-[96px]">
+                    <div className={`mx-auto flex w-[768px] max-w-full flex-col items-center gap-[12px] text-center lg:mx-0 ${isRtl ? "lg:items-start lg:text-right" : "lg:items-start lg:text-left"}`}>
                         <div className="flex w-fit items-center justify-center rounded-full border border-[#2EB8AA] bg-[#F2FBF9] px-[16px] py-[6px] text-[14px] font-medium text-[#1C6964]">
                             {t("Everything You Need", "كل ما تحتاجه")}
                         </div>
-                        <h2 className="max-w-[px] w-full text-[48px] font-semibold leading-[1.1] tracking-[-1.92px]">
+                        <h2 className="max-w-[px] w-full text-[34px] font-semibold leading-[1.12] tracking-[-0.8px] sm:text-[48px] sm:tracking-[-1.92px]">
                             {t("Powerful features for ", "ميزات قوية لـ")}
                             <span className="text-[#2EB8AA]">{t("your emotional journey", "رحلتك العاطفية")}</span>
                         </h2>
-                        <p className="max-w-[px] w-full text-[18px] leading-[28px] text-[#4A5462]">
+                        <p className="max-w-[px] w-full text-[16px] leading-[26px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">
                             {t(
                                 "Shuoori combines the best parts of journaling, mood tracking, and analytics into one beautiful, private space.",
                                 "يجمع Shuoori بين أفضل ما في تدوين المشاعر وتتبع المزاج والتحليلات في مساحة جميلة وخاصة."
@@ -657,7 +657,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                 )
                             })}
                         </div>
-                        <div className="mt-[40px] flex w-full flex-1 items-center justify-center lg:mt-0">
+                        <div className="mt-[20px] flex w-full flex-1 items-center justify-center sm:mt-[40px] lg:mt-0">
                             <FeatureShowcasePreview featureId={featureShowcaseItems[activeFeaturePreview].id} locale={locale} />
                         </div>
                     </div>
@@ -699,18 +699,18 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                 </div>
             </section>
 
-            <section className="bg-[#F8F9FB] py-[128px]">
-                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[48px] px-6 lg:flex-row lg:items-center lg:gap-[64px] lg:px-[96px]">
+            <section className="bg-[#F8F9FB] py-[64px] sm:py-[128px]">
+                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[36px] px-6 sm:gap-[48px] lg:flex-row lg:items-center lg:gap-[64px] lg:px-[96px]">
                     <AnalyticsPhoneMockup locale={locale} t={t} />
-                    <div className={`flex w-full flex-1 flex-col gap-[12px] ${isRtl ? "text-left items-start" : "text-left items-start"}`}>
+                    <div className={`flex w-full flex-1 flex-col items-center gap-[12px] text-center ${isRtl ? "lg:items-end lg:text-right" : "lg:items-start lg:text-left"}`}>
                         <div className="flex w-fit items-center justify-center rounded-full border border-[#2EB8AA] bg-[#F2FBF9] px-[16px] py-[6px] text-[14px] font-medium text-[#1C6964]">
                             {t("Analytics & Insights", "التحليلات والرؤى")}
                         </div>
-                        <h2 className="text-[48px] font-semibold leading-[1.1] tracking-[-1.92px]">
+                        <h2 className="text-[34px] font-semibold leading-[1.12] tracking-[-0.8px] sm:text-[48px] sm:tracking-[-1.92px]">
                             {t("Discover your ", "اكتشف ")}
                             <span className="text-[#2EB8AA]">{t("emotional patterns", "أنماط مشاعرك")}</span>
                         </h2>
-                        <p className="max-w-[px] w-full text-[18px] leading-[28px] text-[#4A5462]">
+                        <p className="max-w-[px] w-full text-[16px] leading-[26px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">
                             {t(
                                 "After a month of logging, you'll see exactly how happy, calm, or anxious you've been. Our analytics dashboard helps you identify trends, triggers, and progress — so you can actively work on improving your mental wellness.",
                                 "بعد شهر من تسجيل مشاعرك، ستعرف بدقة مدى سعادتك أو هدوئك أو قلقك. تساعدك لوحة التحليلات على تحديد الاتجاهات والمحركات والتقدم — لتعمل بفعالية على تحسين صحتك النفسية."
@@ -723,9 +723,9 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                 t("Daily, weekly, and monthly views of your emotional journey", "عرض يومي وأسبوعي وشهري لرحلتك العاطفية"),
                                 t("Understand which emotions dominate and what triggers them", "افهم المشاعر الأكثر تأثيراً وما الذي يحفّزها"),
                             ].map((text) => (
-                                <div key={text} className="flex items-start gap-[12px] py-[6px]">
-                                    <CheckCircle2 className="h-[28px] w-[28px] text-[#2EB8AA]" strokeWidth={1.6} />
-                                    <p className="text-[18px] leading-[28px] text-[#4A5462]">{text}</p>
+                                <div key={text} className={`flex items-start gap-[12px] py-[6px] ${isRtl ? "flex-row-reverse" : ""}`}>
+                                    <CheckCircle2 className="h-[24px] w-[24px] shrink-0 text-[#2EB8AA] sm:h-[28px] sm:w-[28px]" strokeWidth={1.6} />
+                                    <p className="text-[16px] leading-[25px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">{text}</p>
                                 </div>
                             ))}
                         </div>
@@ -736,17 +736,17 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                 </div>
             </section>
 
-            <section id="stories" className="bg-[#FCFBF8] py-[96px]">
-                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[64px] px-6 lg:px-[96px]">
+            <section id="stories" className="bg-[#FCFBF8] py-[64px] sm:py-[96px]">
+                <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[40px] px-6 sm:gap-[64px] lg:px-[96px]">
                     <div className="flex flex-col items-center gap-[12px] text-center">
                         <div className="flex items-center justify-center rounded-full border-2 border-[#2EB8AA] bg-[#F2FBF9] px-[18px] py-[8px] text-[16px] text-[#1C6964]">
                             {t("Real Stories", "قصص حقيقية")}
                         </div>
-                        <h2 className="max-w-[px] w-full text-[48px] font-semibold leading-[1.1] tracking-[-1.92px] text-[#101827]">
+                        <h2 className="max-w-[px] w-full text-[34px] font-semibold leading-[1.12] tracking-[-0.8px] text-[#101827] sm:text-[48px] sm:tracking-[-1.92px]">
                             {t("Loved by people who prioritise ", "محبوب من قبل الأشخاص الذين ")}
                             <span className="text-[#2EB8AA]">{t("their wellbeing", "يضعون صحتهم النفسية أولاً")}</span>
                         </h2>
-                        <p className="max-w-[px] w-full text-[18px] leading-[28px] text-[#4A5462]">
+                        <p className="max-w-[px] w-full text-[16px] leading-[26px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">
                             {t(
                                 "Thousands of people have used Shuoori to understand themselves better and build healthier emotional habits.",
                                 "انضم إلى الآلاف ممن استخدموا Shuoori لفهم أنفسهم بشكل أعمق وبناء عادات عاطفية صحية."
@@ -779,11 +779,11 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                 return (
                                     <div
                                         key={`${story.name}-${index}`}
-                                        className={`relative w-full lg:w-[calc(50%-12px)] flex-shrink-0 flex flex-col justify-between gap-[24px] rounded-[24px] bg-white p-[32px] pt-[24px] md:p-[48px] md:pt-[32px] shadow-[0_12px_32px_rgba(0,0,0,0.04)] overflow-hidden min-h-[380px] lg:min-h-[420px] ${isRtl ? "text-right" : "text-left"}`}
+                                        className={`relative w-full lg:w-[calc(50%-12px)] flex-shrink-0 flex flex-col justify-between gap-[20px] rounded-[24px] bg-white p-[24px] pb-[190px] pt-[24px] sm:gap-[24px] sm:p-[32px] sm:pb-[32px] md:p-[48px] md:pt-[32px] shadow-[0_12px_32px_rgba(0,0,0,0.04)] overflow-hidden min-h-[500px] sm:min-h-[380px] lg:min-h-[420px] ${isRtl ? "text-right" : "text-left"}`}
                                     >
-                                        <div className="flex flex-col gap-[24px] relative z-10 w-full sm:w-[65%] xl:w-[60%]">
-                                            <div className="text-[120px] leading-[0.5] pt-[40px] text-[#F4F5F7] font-serif tracking-tighter">“</div>
-                                            <p className="text-[15px] xl:text-[17px] leading-[26px] xl:leading-[28px] text-[#4A5462]">
+                                        <div className="flex flex-col gap-[18px] relative z-10 w-full sm:w-[65%] sm:gap-[24px] xl:w-[60%]">
+                                            <div className="text-[78px] leading-[0.5] pt-[18px] text-[#F4F5F7] font-serif tracking-tighter sm:text-[120px] sm:pt-[40px]">“</div>
+                                            <p className="text-[14px] leading-[24px] text-[#4A5462] sm:text-[15px] xl:text-[17px] xl:leading-[28px]">
                                                 "{story.quote}"
                                             </p>
                                         </div>
@@ -843,7 +843,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                 </div>
             </section>
 
-            <section id="pricing" className="bg-[#F8F9FB] py-[96px] sm:py-[120px]">
+            <section id="pricing" className="bg-[#F8F9FB] py-[64px] sm:py-[120px]">
                 <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center px-6 lg:px-[96px]">
                     {/* Header */}
                     <div className="flex flex-col items-center gap-[12px] text-center mb-[40px] sm:mb-[52px]">
@@ -851,10 +851,10 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             <Tag className="h-3.5 w-3.5 text-[#2EB8AA]" />
                             <span>{t("PRICING", "الأسعار")}</span>
                         </div>
-                        <h2 className="text-[34px] sm:text-[46px] font-extrabold leading-[1.15] tracking-[-1.5px] text-[#101827]">
+                        <h2 className="text-[30px] font-extrabold leading-[1.16] tracking-[-0.6px] text-[#101827] sm:text-[46px] sm:tracking-[-1.5px]">
                             {t("Simple, Transparent Pricing", "أسعار بسيطة وشفافة")}
                         </h2>
-                        <p className="max-w-[580px] text-[16px] sm:text-[18px] leading-[28px] text-[#4A5462]">
+                        <p className="max-w-[580px] text-[15px] leading-[25px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">
                             {t("We believe in keeping things simple. Enjoy full access to Shuoori today — with more options coming soon.", "نؤمن بتبسيط الأمور. استمتع بالوصول الكامل إلى Shuoori اليوم — مع خيارات إضافية قادمة قريباً.")}
                         </p>
                     </div>
@@ -882,11 +882,11 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                         return (
                             <div className="w-full max-w-[680px] mx-auto flex flex-col gap-[20px]">
                                 {/* Main Free Card */}
-                                <div className="relative overflow-hidden rounded-[32px] border border-[#2EB8AA]/20 bg-[linear-gradient(180deg,#F2FBF9_0%,#FFFFFF_100%)] p-[36px] sm:p-[48px] shadow-[0_24px_60px_rgba(46,184,170,0.10)] text-center flex flex-col items-center">
+                                <div className="relative overflow-hidden rounded-[28px] border border-[#2EB8AA]/20 bg-[linear-gradient(180deg,#F2FBF9_0%,#FFFFFF_100%)] p-[28px] sm:rounded-[32px] sm:p-[48px] shadow-[0_24px_60px_rgba(46,184,170,0.10)] text-center flex flex-col items-center">
                                     {/* Icon Badge */}
-                                    <div className="relative mb-[20px] flex h-[84px] w-[84px] items-center justify-center rounded-full bg-white border border-[#E8ECF2] shadow-[0_12px_28px_rgba(46,184,170,0.16)]">
+                                    <div className="relative mb-[18px] flex h-[72px] w-[72px] items-center justify-center rounded-full bg-white border border-[#E8ECF2] shadow-[0_12px_28px_rgba(46,184,170,0.16)] sm:mb-[20px] sm:h-[84px] sm:w-[84px]">
                                         <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#2EB8AA]/10 to-transparent" />
-                                        <Gift className="h-[38px] w-[38px] text-[#2EB8AA]" strokeWidth={1.8} />
+                                        <Gift className="h-[32px] w-[32px] text-[#2EB8AA] sm:h-[38px] sm:w-[38px]" strokeWidth={1.8} />
                                     </div>
 
                                     {/* Tagline */}
@@ -895,7 +895,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                     </span>
 
                                     {/* Headline */}
-                                    <h3 className="text-[28px] sm:text-[34px] font-extrabold tracking-[-0.8px] text-[#101827] leading-[1.25]">
+                                    <h3 className="text-[24px] font-extrabold tracking-[-0.4px] text-[#101827] leading-[1.24] sm:text-[34px] sm:tracking-[-0.8px]">
                                         {headline}
                                     </h3>
 
@@ -932,17 +932,17 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                 </div>
             </section>
 
-            <section id="faq" className="bg-[#F8F9FB] py-[96px]">
+            <section id="faq" className="bg-[#F8F9FB] py-[64px] sm:py-[96px]">
                 <div
                     dir={isRtl ? "ltr" : undefined}
-                    className={`mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col gap-[64px] px-6 lg:px-[96px] lg:flex-row`}
+                    className={`mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col gap-[36px] px-6 sm:gap-[64px] lg:px-[96px] lg:flex-row`}
                 >
-                    <div className={`flex flex-1 flex-col gap-[64px] ${isRtl ? "text-right items-start lg:order-2" : "text-left items-start"}`}>
-                        <div className={`flex flex-col gap-[12px] ${isRtl ? "items-start text-right" : "items-start text-left"}`}>
+                    <div className={`flex flex-1 flex-col items-center gap-[32px] text-center sm:gap-[64px] ${isRtl ? "lg:order-2 lg:items-start lg:text-right" : "lg:items-start lg:text-left"}`}>
+                        <div className={`flex flex-col items-center gap-[12px] text-center ${isRtl ? "lg:items-start lg:text-right" : "lg:items-start lg:text-left"}`}>
                             <div className="flex w-fit items-center justify-center rounded-full border border-[#2EB8AA] bg-[#F2FBF9] px-[16px] py-[6px] text-[14px] font-medium text-[#1C6964]">
                                 {t("Questions", "الأسئلة")}
                             </div>
-                            <h2 className="text-[48px] font-semibold leading-[1.1] tracking-[-1.92px] text-[#101827]">
+                            <h2 className="text-[34px] font-semibold leading-[1.12] tracking-[-0.8px] text-[#101827] sm:text-[48px] sm:tracking-[-1.92px]">
                                 {t("Frequently asked ", "الأسئلة ")}
                                 <span className="text-[#2EB8AA]">{t("questions", "الشائعة")}</span>
                             </h2>
