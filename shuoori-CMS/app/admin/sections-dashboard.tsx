@@ -177,7 +177,7 @@ export default function AdminDashboard() {
       setSavedSections(JSON.parse(JSON.stringify(fallback)))
       setIsDbConnected(false)
       setSelectedKey(fallback[0]?.key ?? SECTION_KEYS[0])
-      
+
       let friendlyMessage = "Failed to load sections."
       if (error instanceof Error) {
         if (error.message.includes("Unexpected token") || error.message.includes("is not valid JSON")) {
@@ -369,22 +369,22 @@ export default function AdminDashboard() {
               <div className="flex items-center gap-2.5">
                 <div className="relative h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-tr from-[#2EB8AA] via-[#EC4899] to-[#F59E0B] p-[1.5px] shadow-sm">
                   <div className="flex h-full w-full items-center justify-center rounded-full bg-white">
-                    <img 
-                      src="http://localhost:5173/logo.svg" 
-                      className="h-5 w-5 object-contain" 
+                    <img
+                      src="http://localhost:5173/logo.svg"
+                      className="h-5 w-5 object-contain"
                       onError={(e) => {
                         e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232EB8AA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'%3E%3C/circle%3E%3Cpolyline points='21 15 16 10 5 21'%3E%3C/polyline%3E%3C/svg%3E";
                       }}
-                      alt="" 
+                      alt=""
                     />
                   </div>
                 </div>
                 <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1B7C72]">Shuoori CMS</span>
               </div>
-              <button 
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E4E6EA] bg-white text-slate-400 transition hover:bg-slate-50 hover:text-slate-800 shadow-sm" 
-                onClick={fetchSections} 
-                type="button" 
+              <button
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E4E6EA] bg-white text-slate-400 transition hover:bg-slate-50 hover:text-slate-800 shadow-sm"
+                onClick={fetchSections}
+                type="button"
                 aria-label="Refresh sections"
                 title="Refresh database connection"
               >
@@ -393,7 +393,7 @@ export default function AdminDashboard() {
             </div>
             <h1 className="mt-5 font-serif text-[28px] font-semibold tracking-tight text-[#101827] leading-none">Landing Editor</h1>
             <p className="mt-2 text-xs leading-relaxed text-[#8C95A3] font-medium">Manage existing landing page content, media, and publish state.</p>
-            
+
             <div className="mt-4 flex items-center gap-2">
               <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${isDbConnected ? "bg-teal-50 text-teal-700 border border-teal-200/60" : "bg-amber-50 text-amber-800 border border-amber-200/60"}`}>
                 <Database className="h-3 w-3" />
@@ -414,21 +414,19 @@ export default function AdminDashboard() {
                     type="button"
                     key={section.key}
                     onClick={() => setSelectedKey(section.key)}
-                    className={`group flex items-center justify-between rounded-xl px-4 py-3 text-left transition ${
-                      isActive 
-                        ? "bg-[#EAF7F5] text-[#14766E] shadow-sm font-semibold" 
+                    className={`group flex items-center justify-between rounded-xl px-4 py-3 text-left transition ${isActive
+                        ? "bg-[#EAF7F5] text-[#14766E] shadow-sm font-semibold"
                         : "text-[#4A5462] hover:bg-[#FAF9F5] hover:text-[#101827]"
-                    }`}
+                      }`}
                   >
                     <div>
                       <p className="font-serif text-sm font-medium leading-snug">{config?.label ?? section.key}</p>
                       <p className="text-[11px] text-[#8C95A3] font-normal line-clamp-1 mt-0.5">{config?.description}</p>
                     </div>
-                    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
-                      section.isPublished 
-                        ? "bg-emerald-50 text-emerald-700 border border-emerald-100" 
+                    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${section.isPublished
+                        ? "bg-emerald-50 text-emerald-700 border border-emerald-100"
                         : "bg-amber-50 text-amber-700 border border-amber-100"
-                    }`}>
+                      }`}>
                       <span className={`h-1.5 w-1.5 rounded-full ${section.isPublished ? "bg-emerald-500" : "bg-amber-500"}`} />
                       {section.isPublished ? "Live" : "Draft"}
                     </span>
@@ -470,13 +468,12 @@ export default function AdminDashboard() {
                   </label>
 
                   <button
-                    className={`inline-flex h-11 items-center gap-2 rounded-xl px-6 text-xs font-bold uppercase tracking-wider text-white transition shadow-md ${
-                      hasUnsavedChanges
+                    className={`inline-flex h-11 items-center gap-2 rounded-xl px-6 text-xs font-bold uppercase tracking-wider text-white transition shadow-md ${hasUnsavedChanges
                         ? "bg-[#C86B4D] hover:bg-[#b05a3d] ring-2 ring-[#C86B4D]/30"
                         : "bg-[#101827] hover:bg-black"
-                    }`}
+                      }`}
                     onClick={saveSelected}
-                    type="button" 
+                    type="button"
                     disabled={isSaving}
                   >
                     {isSaving ? (
@@ -512,9 +509,9 @@ export default function AdminDashboard() {
                     eyebrow={selected.key === "header" ? "Landing page rows" : "Repeatable rows"}
                     action={
                       selectedConfig ? (
-                        <button 
-                          className="inline-flex h-9 items-center gap-2 rounded-lg bg-[#101827] hover:bg-black px-4 text-xs font-bold uppercase tracking-wider text-white transition shadow-sm" 
-                          type="button" 
+                        <button
+                          className="inline-flex h-9 items-center gap-2 rounded-lg bg-[#101827] hover:bg-black px-4 text-xs font-bold uppercase tracking-wider text-white transition shadow-sm"
+                          type="button"
                           onClick={addItem}
                         >
                           <Plus className="h-4 w-4" />
@@ -602,18 +599,25 @@ export default function AdminDashboard() {
                                 <label className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-lg bg-[#101827] hover:bg-black px-3 text-[10px] font-bold uppercase tracking-wider text-white transition shadow-sm">
                                   <Upload className="h-3 w-3" />
                                   {hasAsset ? "Replace File" : "Upload File"}
-                                  <input 
-                                    className="hidden" 
-                                    type="file" 
-                                    accept="image/*,video/*" 
-                                    onChange={(event) => event.target.files?.[0] && uploadMediaSlot(event.target.files[0], mediaIndex)} 
+                                  <input
+                                    className="hidden"
+                                    type="file"
+                                    accept="image/*,video/*"
+                                    onChange={(event) => event.target.files?.[0] && uploadMediaSlot(event.target.files[0], mediaIndex)}
                                   />
                                 </label>
                               </div>
 
-                              <div className="overflow-hidden rounded-xl border border-[#E4E6EA]/80 bg-white flex items-center justify-center p-3 h-48 shadow-inner">
+                              <div className="overflow-hidden rounded-xl border border-[#E4E6EA]/80 bg-[#101827] flex items-center justify-center p-2 h-48 shadow-inner">
                                 {isVideoUrl(media.url) ? (
-                                  <video className="h-full w-full object-cover rounded-lg" src={resolvedPreviewUrl} controls muted />
+                                  <video
+                                    className="h-full w-full object-contain rounded-lg"
+                                    src={resolvedPreviewUrl ? (resolvedPreviewUrl.includes("#t=") ? resolvedPreviewUrl : `${resolvedPreviewUrl}#t=0.001`) : ""}
+                                    controls
+                                    muted
+                                    preload="metadata"
+                                    playsInline
+                                  />
                                 ) : media.url ? (
                                   <img className="h-full max-h-full max-w-full object-contain" src={resolvedPreviewUrl} alt={media.alt.en || slotLabel} />
                                 ) : (
@@ -624,7 +628,7 @@ export default function AdminDashboard() {
                                   </div>
                                 )}
                               </div>
-                              
+
                               <div className="mt-3.5 space-y-3.5">
                                 <TextField
                                   label="File URL"
@@ -652,9 +656,9 @@ export default function AdminDashboard() {
                               </div>
 
                               {hasAsset ? (
-                                <button 
-                                  className="mt-4 inline-flex h-8 w-full items-center justify-center gap-2 rounded-xl border border-red-100 bg-white hover:bg-red-50 text-[11px] font-bold uppercase tracking-wider text-red-600 shadow-sm transition" 
-                                  type="button" 
+                                <button
+                                  className="mt-4 inline-flex h-8 w-full items-center justify-center gap-2 rounded-xl border border-red-100 bg-white hover:bg-red-50 text-[11px] font-bold uppercase tracking-wider text-red-600 shadow-sm transition"
+                                  type="button"
                                   onClick={() => clearMediaSlot(mediaIndex)}
                                 >
                                   <Trash2 className="h-3.5 w-3.5" />
@@ -716,11 +720,10 @@ function Panel({ title, eyebrow, action, children }: { title: string; eyebrow?: 
 function IconButton({ label, icon, onClick, tone = "neutral" }: { label: string; icon: React.ReactNode; onClick: () => void; tone?: "neutral" | "danger" }) {
   return (
     <button
-      className={`inline-flex h-8 w-8 items-center justify-center rounded-lg border bg-white shadow-sm transition ${
-        tone === "danger" 
-          ? "border-red-100 text-red-600 hover:bg-red-50" 
+      className={`inline-flex h-8 w-8 items-center justify-center rounded-lg border bg-white shadow-sm transition ${tone === "danger"
+          ? "border-red-100 text-red-600 hover:bg-red-50"
           : "border-[#E4E6EA] text-[#4A5462] hover:bg-slate-50 hover:text-[#101827]"
-      }`}
+        }`}
       onClick={onClick}
       type="button"
       aria-label={label}
@@ -753,9 +756,9 @@ function ItemFieldEditor({ field, item, onChange }: { field: ItemField; item: Se
       <div className="md:col-span-2">
         <div className="mb-3.5 flex items-center justify-between gap-3">
           <p className="text-xs font-bold uppercase tracking-wider text-[#6A727F]">{field.label}</p>
-          <button 
-            type="button" 
-            className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#E4E6EA] bg-white px-3 text-xs font-bold uppercase tracking-wider text-[#4A5462] hover:bg-slate-50 hover:text-[#101827] shadow-sm transition" 
+          <button
+            type="button"
+            className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#E4E6EA] bg-white px-3 text-xs font-bold uppercase tracking-wider text-[#4A5462] hover:bg-slate-50 hover:text-[#101827] shadow-sm transition"
             onClick={() => onChange([...list, emptyLocalized()])}
           >
             <Plus className="h-3.5 w-3.5" />
@@ -797,11 +800,11 @@ function ItemFieldEditor({ field, item, onChange }: { field: ItemField; item: Se
       <label className="flex h-12 cursor-pointer select-none items-center justify-between gap-4 rounded-xl border border-[#E4E6EA]/80 bg-[#FAF9F6] px-4 text-sm font-semibold text-slate-700 transition hover:border-[#2EB8AA]/30">
         <span className="text-xs font-bold uppercase tracking-wider text-[#6A727F]">{field.label}</span>
         <div className="relative inline-flex items-center">
-          <input 
-            type="checkbox" 
-            className="sr-only" 
-            checked={isChecked} 
-            onChange={(event) => onChange(event.target.checked)} 
+          <input
+            type="checkbox"
+            className="sr-only"
+            checked={isChecked}
+            onChange={(event) => onChange(event.target.checked)}
           />
           <div className={`h-5 w-9 rounded-full transition-colors ${isChecked ? "bg-[#2EB8AA]" : "bg-slate-200"}`} />
           <div className={`absolute left-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform ${isChecked ? "translate-x-4" : "translate-x-0"}`} />
@@ -815,12 +818,12 @@ function ItemFieldEditor({ field, item, onChange }: { field: ItemField; item: Se
   }
 
   return (
-    <TextField 
-      label={field.label} 
-      value={formatScalarValue(value, field.type)} 
-      onChange={(nextValue) => onChange(field.type === "number" ? Number(nextValue) : nextValue)} 
-      placeholder={field.placeholder} 
-      type={field.type === "number" ? "number" : "text"} 
+    <TextField
+      label={field.label}
+      value={formatScalarValue(value, field.type)}
+      onChange={(nextValue) => onChange(field.type === "number" ? Number(nextValue) : nextValue)}
+      placeholder={field.placeholder}
+      type={field.type === "number" ? "number" : "text"}
     />
   )
 }
@@ -848,15 +851,14 @@ function TextField({
   return (
     <label className="flex flex-col gap-1.5 text-xs font-bold uppercase tracking-wider text-[#6A727F]">
       {label}
-      <input 
-        className={`h-11 w-full rounded-xl border border-[#E4E6EA]/80 bg-[#FAF9F6] px-4 text-sm font-normal normal-case text-[#101827] outline-none transition placeholder:text-slate-400 focus:border-[#2EB8AA] focus:ring-2 focus:ring-[#2EB8AA]/10 ${
-          dir === "rtl" ? "text-right placeholder:text-right font-sans" : "text-left"
-        }`} 
-        dir={dir} 
-        value={value} 
-        type={type} 
-        placeholder={placeholder} 
-        onChange={(event) => onChange(event.target.value)} 
+      <input
+        className={`h-11 w-full rounded-xl border border-[#E4E6EA]/80 bg-[#FAF9F6] px-4 text-sm font-normal normal-case text-[#101827] outline-none transition placeholder:text-slate-400 focus:border-[#2EB8AA] focus:ring-2 focus:ring-[#2EB8AA]/10 ${dir === "rtl" ? "text-right placeholder:text-right font-sans" : "text-left"
+          }`}
+        dir={dir}
+        value={value}
+        type={type}
+        placeholder={placeholder}
+        onChange={(event) => onChange(event.target.value)}
       />
     </label>
   )
@@ -876,13 +878,12 @@ function TextArea({
   return (
     <label className="flex flex-col gap-1.5 text-xs font-bold uppercase tracking-wider text-[#6A727F] md:col-span-1">
       {label}
-      <textarea 
-        className={`min-h-[132px] w-full rounded-xl border border-[#E4E6EA]/80 bg-[#FAF9F6] p-4 text-sm font-normal normal-case text-[#101827] leading-6 outline-none transition placeholder:text-slate-400 focus:border-[#2EB8AA] focus:ring-2 focus:ring-[#2EB8AA]/10 ${
-          dir === "rtl" ? "text-right placeholder:text-right font-sans" : "text-left"
-        }`} 
-        dir={dir} 
-        value={value} 
-        onChange={(event) => onChange(event.target.value)} 
+      <textarea
+        className={`min-h-[132px] w-full rounded-xl border border-[#E4E6EA]/80 bg-[#FAF9F6] p-4 text-sm font-normal normal-case text-[#101827] leading-6 outline-none transition placeholder:text-slate-400 focus:border-[#2EB8AA] focus:ring-2 focus:ring-[#2EB8AA]/10 ${dir === "rtl" ? "text-right placeholder:text-right font-sans" : "text-left"
+          }`}
+        dir={dir}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
       />
     </label>
   )
