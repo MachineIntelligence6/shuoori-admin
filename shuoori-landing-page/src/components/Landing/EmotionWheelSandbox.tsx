@@ -958,6 +958,7 @@ export default function EmotionWheelSandbox({ locale, readOnly = false }: Emotio
                                             <div className="flex flex-col gap-2 w-full px-2">
                                                 <div className="relative w-full flex items-center">
                                                     <input 
+                                                        dir="ltr"
                                                         type="range" 
                                                         min="0" 
                                                         max="100" 
@@ -971,6 +972,7 @@ export default function EmotionWheelSandbox({ locale, readOnly = false }: Emotio
                                                         }}
                                                         className={`w-full appearance-none h-2.5 rounded-full outline-none ${readOnly ? "pointer-events-none cursor-default" : "cursor-pointer"}`}
                                                         style={{
+                                                            direction: "ltr",
                                                             background: activeEmotion
                                                                 ? `linear-gradient(to right, ${sliderAccent} 0%, ${sliderAccent} ${intensityValue}%, rgba(255,255,255,0.45) ${intensityValue}%, rgba(255,255,255,0.45) 100%)`
                                                                 : `linear-gradient(to right, #85D3C9 0%, #85D3C9 ${intensityValue}%, #E4E6EA ${intensityValue}%, #E4E6EA 100%)`,
@@ -1004,7 +1006,7 @@ export default function EmotionWheelSandbox({ locale, readOnly = false }: Emotio
                                                         }
                                                     `}</style>
                                                 </div>
-                                                <div className="flex justify-between text-[10px] font-black tracking-wider text-[#283244]/60 px-0.5 mt-0.5">
+                                                <div dir="ltr" className="flex justify-between text-[10px] font-black tracking-wider text-[#283244]/60 px-0.5 mt-0.5">
                                                     <span>
                                                         {activeEmotion 
                                                             ? getLocalizedLabel(SLIDER_LABELS[activeEmotion.id].left, isRtl) 
