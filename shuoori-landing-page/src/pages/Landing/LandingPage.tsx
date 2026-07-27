@@ -264,7 +264,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                 </div>
 
                 <div className="relative z-10 mx-auto flex w-full max-w-[1400px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[40px] px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-[56px] lg:px-[32px]">
-                    <div className="flex max-w-[1000px] flex-col items-center text-center lg:mr-auto lg:flex-1 lg:items-start lg:text-left">
+                    <div className={`flex max-w-[1000px] flex-col items-center text-center lg:flex-1 lg:items-start ${isRtl ? "lg:ml-auto lg:text-right" : "lg:mr-auto lg:text-left"}`}>
                         <div className="mb-[24px] flex items-center justify-center rounded-full border border-[#2EB8AA] bg-[#F2FBF9] px-[18px] py-[8px] text-[15px] font-medium text-[#1C6964] lg:justify-start">
                             {t("#1 Emotion Wellness App", "تطبيق الرفاه العاطفي رقم 1")}
                         </div>
@@ -440,7 +440,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             [4.9, "", t("App Store Rating", "تقييم متجر التطبيقات"), 1],
                             [94, "", t("Report Improved Wellness", "أبلغوا بتحسن الرفاه"), 0],
                         ].map(([val, prefix, label, decimals], index) => (
-                            <div key={label as string} className={`flex min-w-0 flex-col items-center gap-[6px] lg:flex-1 lg:w-auto lg:gap-[8px] ${isRtl ? "lg:items-end" : "lg:items-start"}`}>
+                            <div key={label as string} className="flex min-w-0 flex-col items-center gap-[6px] lg:flex-1 lg:w-auto lg:items-start lg:gap-[8px]">
                                 <div className="text-[34px] font-semibold leading-none tracking-[-0.8px] text-[#101827] flex items-center sm:text-[40px] lg:text-[48px] lg:leading-[1.1] lg:tracking-normal">
                                     <AnimatedStatistic target={val as number} suffix={prefix as string} decimals={decimals as number} />
                                     {index === 0 || index === 1 ? <span className="text-[#2EB8AA]">+</span> : null}
@@ -702,7 +702,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
             <section className="bg-[#F8F9FB] py-[64px] sm:py-[128px]">
                 <div className="mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[36px] px-6 sm:gap-[48px] lg:flex-row lg:items-center lg:gap-[64px] lg:px-[96px]">
                     <AnalyticsPhoneMockup locale={locale} t={t} />
-                    <div className={`flex w-full flex-1 flex-col items-center gap-[12px] text-center ${isRtl ? "lg:items-end lg:text-right" : "lg:items-start lg:text-left"}`}>
+                    <div className={`flex w-full flex-1 flex-col items-center gap-[12px] text-center ${isRtl ? "lg:items-start lg:text-right" : "lg:items-start lg:text-left"}`}>
                         <div className="flex w-fit items-center justify-center rounded-full border border-[#2EB8AA] bg-[#F2FBF9] px-[16px] py-[6px] text-[14px] font-medium text-[#1C6964]">
                             {t("Analytics & Insights", "التحليلات والرؤى")}
                         </div>
@@ -723,7 +723,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                 t("Daily, weekly, and monthly views of your emotional journey", "عرض يومي وأسبوعي وشهري لرحلتك العاطفية"),
                                 t("Understand which emotions dominate and what triggers them", "افهم المشاعر الأكثر تأثيراً وما الذي يحفّزها"),
                             ].map((text) => (
-                                <div key={text} className={`flex items-start gap-[12px] py-[6px] ${isRtl ? "flex-row-reverse" : ""}`}>
+                                <div key={text} className="flex items-start gap-[12px] py-[6px]">
                                     <CheckCircle2 className="h-[24px] w-[24px] shrink-0 text-[#2EB8AA] sm:h-[28px] sm:w-[28px]" strokeWidth={1.6} />
                                     <p className="text-[16px] leading-[25px] text-[#4A5462] sm:text-[18px] sm:leading-[28px]">{text}</p>
                                 </div>
@@ -934,10 +934,9 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
 
             <section id="faq" className="bg-[#F8F9FB] py-[64px] sm:py-[96px]">
                 <div
-                    dir={isRtl ? "ltr" : undefined}
                     className={`mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col gap-[36px] px-6 sm:gap-[64px] lg:px-[96px] lg:flex-row`}
                 >
-                    <div className={`flex flex-1 flex-col items-center gap-[32px] text-center sm:gap-[64px] ${isRtl ? "lg:order-2 lg:items-start lg:text-right" : "lg:items-start lg:text-left"}`}>
+                    <div className={`flex flex-1 flex-col items-center gap-[32px] text-center sm:gap-[64px] ${isRtl ? "lg:items-start lg:text-right" : "lg:items-start lg:text-left"}`}>
                         <div className={`flex flex-col items-center gap-[12px] text-center ${isRtl ? "lg:items-start lg:text-right" : "lg:items-start lg:text-left"}`}>
                             <div className="flex w-fit items-center justify-center rounded-full border border-[#2EB8AA] bg-[#F2FBF9] px-[16px] py-[6px] text-[14px] font-medium text-[#1C6964]">
                                 {t("Questions", "الأسئلة")}
@@ -962,7 +961,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             </a>
                         </div>
                     </div>
-                    <div className={`flex flex-1 flex-col gap-[24px] ${isRtl ? "text-left items-start lg:order-1" : "text-left items-start"}`}>
+                    <div className={`flex flex-1 flex-col gap-[24px] ${isRtl ? "items-stretch text-right" : "items-stretch text-left"}`}>
                         {[
                             {
                                 question: t("Is my emotional data private and secure?", "هل بياناتي العاطفية خاصة وآمنة؟"),
@@ -998,7 +997,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                     <button
                                         type="button"
                                         onClick={() => setExpandedFaq(isOpen ? -1 : idx)}
-                                        className={`flex w-full items-start justify-between gap-[24px] ${isRtl ? "text-right flex-row-reverse" : "text-left"}`}
+                                        className={`flex w-full items-start justify-between gap-[24px] ${isRtl ? "text-right" : "text-left"}`}
                                         aria-expanded={isOpen}
                                     >
                                         <div className="flex flex-1 flex-col gap-[8px]">
@@ -1023,9 +1022,9 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
             </section>
             <footer className="bg-[#F8F9FB] pb-[96px] pt-[64px]">
                 <div className="relative mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[64px] px-6 lg:px-[96px]">
-                    <div className={`flex w-full flex-col gap-[24px] lg:items-center lg:justify-between text-[14px] text-[#4A5462] ${isRtl ? "lg:flex-row-reverse text-right" : "lg:flex-row text-left"}`}>
-                        <p>{t("© 2026 Shuoori. Made with care for your wellbeing.", "© 2026 Shuoori. صُنع بعناية من أجل رفاهك.")}</p>
-                        <div className={`flex flex-wrap items-center gap-[24px] lg:gap-[32px] font-medium ${isRtl ? "flex-row-reverse" : ""}`}>
+                    <div className={`flex w-full flex-col items-center gap-[18px] text-center text-[14px] text-[#4A5462] lg:gap-[24px] lg:items-center lg:justify-between ${isRtl ? "lg:flex-row-reverse lg:text-right" : "lg:flex-row lg:text-left"}`}>
+                        <p className="w-full lg:w-auto">{t("© 2026 Shuoori. Made with care for your wellbeing.", "© 2026 Shuoori. صُنع بعناية من أجل رفاهك.")}</p>
+                        <div className="flex flex-wrap items-center justify-center gap-x-[18px] gap-y-[12px] font-medium sm:gap-x-[24px] lg:justify-start lg:gap-x-[32px]">
                             <a href="#features" className="hover:text-[#101827] transition-colors">{t("Features", "الميزات")}</a>
                             <a href="#how" className="hover:text-[#101827] transition-colors">{t("How it works", "كيف يعمل")}</a>
                             <a href="#stories" className="hover:text-[#101827] transition-colors">{t("Stories", "قصص")}</a>
