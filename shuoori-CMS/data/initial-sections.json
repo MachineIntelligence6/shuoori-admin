@@ -1,0 +1,832 @@
+[
+  {
+    "key": "header",
+    "title": {
+      "en": "Shuoori",
+      "ar": "شعوري"
+    },
+    "subtitle": {
+      "en": "Landing page header",
+      "ar": "ترويسة صفحة الهبوط"
+    },
+    "body": {
+      "en": "Primary navigation and sign-in call to action.",
+      "ar": "روابط التنقل الرئيسية وزر تسجيل الدخول."
+    },
+    "images": [
+      {
+        "url": "/logo.svg",
+        "alt": {
+          "en": "Shuoori logo",
+          "ar": "شعار شعوري"
+        },
+        "key": "legacy/logo.svg"
+      }
+    ],
+    "items": [
+      {
+        "kind": "nav",
+        "label": {
+          "en": "Features",
+          "ar": "الميزات"
+        },
+        "href": "#features"
+      },
+      {
+        "kind": "nav",
+        "label": {
+          "en": "How it works",
+          "ar": "كيف يعمل"
+        },
+        "href": "#how"
+      },
+      {
+        "kind": "nav",
+        "label": {
+          "en": "Stories",
+          "ar": "قصص"
+        },
+        "href": "#stories"
+      },
+      {
+        "kind": "nav",
+        "label": {
+          "en": "Pricing",
+          "ar": "الأسعار"
+        },
+        "href": "#pricing"
+      },
+      {
+        "kind": "nav",
+        "label": {
+          "en": "FAQ",
+          "ar": "الأسئلة الشائعة"
+        },
+        "href": "#faq"
+      },
+      {
+        "kind": "cta",
+        "label": {
+          "en": "Sign in",
+          "ar": "تسجيل الدخول"
+        },
+        "href": "/auth"
+      }
+    ],
+    "order": 0,
+    "isPublished": true
+  },
+  {
+    "key": "hero",
+    "title": {
+      "en": "Understand your emotions\ntransform your mental wellness",
+      "ar": "افهم مشاعرك\nوغير صحتك النفسية"
+    },
+    "subtitle": {
+      "en": "#1 Emotion Wellness App",
+      "ar": "تطبيق الرفاه العاطفي رقم 1"
+    },
+    "body": {
+      "en": "Shuoori helps you track, understand, and improve your emotional health through intuitive journaling, AI-powered insights, and beautiful analytics — in just 60 seconds a day.",
+      "ar": "يساعدك Shuoori على تتبع وفهم وتحسين صحتك العاطفية عبر تدوين المشاعر والبصيرة المدعومة بالذكاء الاصطناعي والتحليلات الجميلة — خلال 60 ثانية يوميا."
+    },
+    "images": [
+      {
+        "url": "/Mobile app store badge.svg",
+        "alt": {
+          "en": "Download on the App Store",
+          "ar": "تنزيل من آب ستور"
+        },
+        "key": "legacy/mobile-app-store-badge.svg"
+      },
+      {
+        "url": "/Mobile app store badge (1).svg",
+        "alt": {
+          "en": "Get it on Google Play",
+          "ar": "احصل عليه من جوجل بلاي"
+        },
+        "key": "legacy/mobile-app-store-badge-google.svg"
+      },
+      {
+        "url": "/dummy-hero-video.mp4",
+        "alt": {
+          "en": "Shuoori app preview video",
+          "ar": "فيديو معاينة تطبيق Shuoori"
+        },
+        "key": "legacy/dummy-hero-video.mp4"
+      }
+    ],
+    "items": [
+      {
+        "kind": "cta",
+        "label": {
+          "en": "Start free no card needed",
+          "ar": "ابدأ مجانا بدون بطاقة"
+        },
+        "href": "#pricing",
+        "value": "",
+        "suffix": "",
+        "decimals": 0,
+        "imageUrl": ""
+      },
+      {
+        "kind": "cta",
+        "label": {
+          "en": "Watch demo",
+          "ar": "شاهد العرض"
+        },
+        "href": "#demo",
+        "value": "",
+        "suffix": "",
+        "decimals": 0,
+        "imageUrl": ""
+      },
+      {
+        "kind": "social_proof",
+        "label": {
+          "en": "50K+ people track their emotions daily",
+          "ar": "أكثر من 50 ألف شخص يتتبعون مشاعرهم يوميا"
+        },
+        "href": "",
+        "value": "50K+",
+        "suffix": "",
+        "decimals": 0,
+        "imageUrl": ""
+      },
+      {
+        "kind": "stat",
+        "label": {
+          "en": "Active Users",
+          "ar": "المستخدمون النشطون"
+        },
+        "href": "",
+        "value": "50",
+        "suffix": "K+",
+        "decimals": 0,
+        "imageUrl": ""
+      },
+      {
+        "kind": "stat",
+        "label": {
+          "en": "Emotions Logged",
+          "ar": "المشاعر المسجلة"
+        },
+        "href": "",
+        "value": "2.3",
+        "suffix": "M+",
+        "decimals": 1,
+        "imageUrl": ""
+      },
+      {
+        "kind": "stat",
+        "label": {
+          "en": "App Store Rating",
+          "ar": "تقييم متجر التطبيقات"
+        },
+        "href": "",
+        "value": "4.9",
+        "suffix": "",
+        "decimals": 1,
+        "imageUrl": ""
+      },
+      {
+        "kind": "stat",
+        "label": {
+          "en": "Report Improved Wellness",
+          "ar": "أبلغوا بتحسن الرفاه"
+        },
+        "href": "",
+        "value": "89",
+        "suffix": "%",
+        "decimals": 0,
+        "imageUrl": ""
+      }
+    ],
+    "order": 1,
+    "isPublished": true
+  },
+  {
+    "key": "process",
+    "title": {
+      "en": "Start tracking in 4 simple steps",
+      "ar": "ابدأ التتبع في 4 خطوات بسيطة"
+    },
+    "subtitle": {
+      "en": "Simple Process",
+      "ar": "عملية بسيطة"
+    },
+    "body": {
+      "en": "From logging your first emotion to receiving personalized monthly reports Shuoori guides you every step of the way.",
+      "ar": "من تسجيل أول شعور لك إلى استلام تقارير شهرية مخصصة، يرشدك Shuoori في كل خطوة على الطريق."
+    },
+    "images": [],
+    "items": [
+      {
+        "step": 1,
+        "title": {
+          "en": "Pick your emotion",
+          "ar": "اختر شعورك"
+        },
+        "description": {
+          "en": "Choose from our intuitive emotion wheel. From joy to anxiety, we have all the shades of feeling covered with clear labels.",
+          "ar": "اختر من عجلة المشاعر البديهية. من الفرح إلى القلق، لدينا جميع درجات الشعور بتسميات واضحة."
+        },
+        "preview": "emotion_wheel"
+      },
+      {
+        "step": 2,
+        "title": {
+          "en": "Add when, where and with whom",
+          "ar": "أضف متى وأين ومع من"
+        },
+        "description": {
+          "en": "Tag your activity, location and who you're with. The context behind your emotion unlocks deep insights.",
+          "ar": "ضع علامة على النشاط والموقع ومن تكون معه. سياق المشاعر يمنحك رؤى أعمق."
+        },
+        "preview": "context_selection"
+      },
+      {
+        "step": 3,
+        "title": {
+          "en": "Define any additional details",
+          "ar": "أضف أي تفاصيل إضافية"
+        },
+        "description": {
+          "en": "Add a journal entry by typing or using voice-to-text. Guided prompts help when you're unsure what to write.",
+          "ar": "أضف مذكرة بكتابة النص أو باستخدام تحويل الصوت إلى نص. تساعدك الإرشادات عندما لا تعرف ماذا تكتب."
+        },
+        "preview": "share_details"
+      },
+      {
+        "step": 4,
+        "title": {
+          "en": "Watch notice, trends and pattern",
+          "ar": "تابع الملاحظات والاتجاهات والأنماط"
+        },
+        "description": {
+          "en": "After a week or month, review how happy, calm or anxious you were and get AI insights to improve your wellbeing.",
+          "ar": "بعد أسبوع أو شهر، راجع مدى سعادتك أو هدوئك أو قلقك واحصل على رؤى الذكاء الاصطناعي لتحسين رفاهك."
+        },
+        "preview": "trend_widget"
+      }
+    ],
+    "order": 2,
+    "isPublished": true
+  },
+  {
+    "key": "feature_showcase",
+    "title": {
+      "en": "Powerful features for your emotional journey",
+      "ar": "ميزات قوية لرحلتك العاطفية"
+    },
+    "subtitle": {
+      "en": "Everything You Need",
+      "ar": "كل ما تحتاجه"
+    },
+    "body": {
+      "en": "Shuoori combines the best parts of journaling, mood tracking, and analytics into one beautiful, private space.",
+      "ar": "يجمع Shuoori بين أفضل ما في تدوين المشاعر وتتبع المزاج والتحليلات في مساحة جميلة وخاصة."
+    },
+    "images": [],
+    "items": [
+      {
+        "id": "wheel",
+        "title": {
+          "en": "Emotion wheel",
+          "ar": "عجلة المشاعر"
+        },
+        "description": {
+          "en": "Emotion wheels with a fast, tappable 6 core emotions with sub-emotion detail built for speed and clarity.",
+          "ar": "عجلة مشاعر سريعة وسهلة النقر بـ 6 مشاعر أساسية وتفاصيل فرعية للوضوح والسرعة."
+        }
+      },
+      {
+        "id": "analytics",
+        "title": {
+          "en": "Deep Analytics Dashboard",
+          "ar": "لوحة تحليلات متقدمة"
+        },
+        "description": {
+          "en": "Bar charts, donut breakdowns. Understand your emotional trends across weeks and months.",
+          "ar": "مخططات أعمدة ودوائر. افهم اتجاهات مشاعرك عبر الأسابيع والأشهر."
+        }
+      },
+      {
+        "id": "journaling",
+        "title": {
+          "en": "Voice-to-Text Journaling",
+          "ar": "تدوين الصوت إلى نص"
+        },
+        "description": {
+          "en": "Too tired to type? Just speak. Your voice gets converted to a rich journal entry in seconds effortless emotional expression.",
+          "ar": "متعب من الكتابة؟ فقط تحدث. يتحول صوتك إلى ملاحظة غنية خلال ثوان للتعبير العاطفي بسهولة."
+        }
+      },
+      {
+        "id": "hipaa",
+        "title": {
+          "en": "HIPAA Compliant",
+          "ar": "متوافق مع HIPAA"
+        },
+        "description": {
+          "en": "Shuoori adheres to HIPAA standards — the highest level of healthcare data protection in the industry.",
+          "ar": "يلتزم Shuoori بمعايير HIPAA — أعلى مستوى لحماية بيانات الرعاية الصحية في المجال."
+        }
+      }
+    ],
+    "order": 3,
+    "isPublished": true
+  },
+  {
+    "key": "analytics",
+    "title": {
+      "en": "Discover your emotional patterns",
+      "ar": "اكتشف أنماط مشاعرك"
+    },
+    "subtitle": {
+      "en": "Analytics & Insights",
+      "ar": "التحليلات والرؤى"
+    },
+    "body": {
+      "en": "After a month of logging, you'll see exactly how happy, calm, or anxious you've been. Our analytics dashboard helps you identify trends, triggers, and progress — so you can actively work on improving your mental wellness.",
+      "ar": "بعد شهر من تسجيل مشاعرك، ستعرف بدقة مدى سعادتك أو هدوئك أو قلقك. تساعدك لوحة التحليلات على تحديد الاتجاهات والمحفزات والتقدم — لتعمل بفعالية على تحسين صحتك النفسية."
+    },
+    "images": [],
+    "items": [
+      {
+        "text": {
+          "en": "Monthly mood breakdown — see your happiest and toughest days",
+          "ar": "تحليل شهري للحالة المزاجية — تعرف على أكثر أيامك سعادة وأصعبها"
+        }
+      },
+      {
+        "text": {
+          "en": "Track progress over weeks and months to spot improvements",
+          "ar": "تتبع تقدمك عبر الأسابيع والأشهر لملاحظة التحسن"
+        }
+      },
+      {
+        "text": {
+          "en": "Daily, weekly, and monthly views of your emotional journey",
+          "ar": "عرض يومي وأسبوعي وشهري لرحلتك العاطفية"
+        }
+      },
+      {
+        "text": {
+          "en": "Understand which emotions dominate and what triggers them",
+          "ar": "افهم المشاعر الأكثر تأثيرا وما الذي يحفزها"
+        }
+      }
+    ],
+    "order": 4,
+    "isPublished": true
+  },
+  {
+    "key": "testimonials",
+    "title": {
+      "en": "Loved by people who prioritise their wellbeing",
+      "ar": "محبوب من قبل الأشخاص الذين يضعون صحتهم النفسية أولا"
+    },
+    "subtitle": {
+      "en": "Real Stories",
+      "ar": "قصص حقيقية"
+    },
+    "body": {
+      "en": "Thousands of people have used Shuoori to understand themselves better and build healthier emotional habits.",
+      "ar": "انضم إلى الآلاف ممن استخدموا Shuoori لفهم أنفسهم بشكل أعمق وبناء عادات عاطفية صحية."
+    },
+    "images": [],
+    "items": [
+      {
+        "quote": {
+          "en": "I've tried every mood tracker out there. Shuoori is the first one that actually helped me understand why I feel the way I do. The AI insights are genuinely useful.",
+          "ar": "جربت كل تطبيقات تتبع المزاج، لكن Shuoori كان الأول الذي ساعدني فعليا على فهم سبب مشاعري. الرؤى بالذكاء الاصطناعي مفيدة جدا."
+        },
+        "name": {
+          "en": "Sarah M.",
+          "ar": "سارة جميل"
+        },
+        "title": {
+          "en": "Therapist · Dubai",
+          "ar": "أخصائية نفسية · دبي"
+        },
+        "imageUrl": "/Pexels Photo by Mikhail Nilov.png",
+        "imageAlt": {
+          "en": "Sarah M.",
+          "ar": "سارة جميل"
+        }
+      },
+      {
+        "quote": {
+          "en": "The card grid for emotions is so much better than the wheel. I log my mood every morning in under 30 seconds. My mental health has genuinely improved over 3 months.",
+          "ar": "بطاقات المشاعر أفضل بكثير من العجلة. أسجل مزاجي كل صباح في أقل من 30 ثانية. صحتي النفسية تحسنت فعلا خلال 3 أشهر."
+        },
+        "name": {
+          "en": "Ahmed K.",
+          "ar": "أحمد جميل"
+        },
+        "title": {
+          "en": "Software Engineer · Riyadh",
+          "ar": "مهندس برمجيات · الرياض"
+        },
+        "imageUrl": "/Pexels Photo by Khaled Saleh.png",
+        "imageAlt": {
+          "en": "Ahmed K.",
+          "ar": "أحمد جميل"
+        }
+      },
+      {
+        "quote": {
+          "en": "The voice-to-text journaling feature is a lifesaver. I can just speak my thoughts on my drive home and it captures the emotional context perfectly.",
+          "ar": "ميزة التدوين الصوتي مذهلة. يمكنني التعبير عن أفكاري أثناء قيادتي للسيارة ويسجل التطبيق السياق العاطفي بدقة."
+        },
+        "name": {
+          "en": "Layla H.",
+          "ar": "ليلى حسن"
+        },
+        "title": {
+          "en": "UI/UX Designer · Abu Dhabi",
+          "ar": "مصممة واجهات · أبو ظبي"
+        },
+        "imageUrl": "/hero-avatar-1.png",
+        "imageAlt": {
+          "en": "Layla H.",
+          "ar": "ليلى حسن"
+        }
+      },
+      {
+        "quote": {
+          "en": "I love the clean, modern interface. Tracking my triggers over the last 3 months helped me restructure my morning routine for less stress.",
+          "ar": "أحب الواجهة النظيفة والحديثة. ساعدني تتبع محفزات القلق خلال الأشهر الثلاثة الماضية في إعادة هيكلة روتيني الصباحي لتقليل التوتر."
+        },
+        "name": {
+          "en": "Omar F.",
+          "ar": "عمر فاروق"
+        },
+        "title": {
+          "en": "Marketing Lead · Muscat",
+          "ar": "مدير تسويق · مسقط"
+        },
+        "imageUrl": "/hero-avatar-2.png",
+        "imageAlt": {
+          "en": "Omar F.",
+          "ar": "عمر فاروق"
+        }
+      }
+    ],
+    "order": 5,
+    "isPublished": true
+  },
+  {
+    "key": "pricing",
+    "title": {
+      "en": "Invest in your emotional wellness",
+      "ar": "استثمر في رفاهك العاطفي"
+    },
+    "subtitle": {
+      "en": "Simple Pricing",
+      "ar": "خطط الاشتراك"
+    },
+    "body": {
+      "en": "Start free, upgrade when you're ready. No hidden fees, no long-term contracts.",
+      "ar": "ابدأ مجانا، وحدث عندما تكون مستعدا. بدون رسوم خفية أو عقود طويلة."
+    },
+    "images": [],
+    "items": [
+      {
+        "name": {
+          "en": "Free plan",
+          "ar": "الخطة المجانية"
+        },
+        "badge": {
+          "en": "",
+          "ar": ""
+        },
+        "monthlyPrice": "$0.00/mth",
+        "yearlyPrice": "$0.00/mth",
+        "description": {
+          "en": "Perfect for getting started with emotion tracking.",
+          "ar": "مثالية للبدء في تتبع المشاعر."
+        },
+        "features": [
+          {
+            "en": "Basic emotion logging (up to 50 emotions/month)",
+            "ar": "تسجيل المشاعر الأساسي (حتى 50 شعورا شهريا)"
+          },
+          {
+            "en": "Simple emotion wheel interface",
+            "ar": "واجهة عجلة مشاعر بسيطة"
+          },
+          {
+            "en": "Basic dashboard view",
+            "ar": "عرض لوحة تحكم أساسية"
+          },
+          {
+            "en": "7-day emotion history",
+            "ar": "سجل المشاعر لمدة 7 أيام"
+          },
+          {
+            "en": "Email reminders (1 per week)",
+            "ar": "تذكير عبر البريد الإلكتروني (مرة أسبوعيا)"
+          }
+        ],
+        "ctaLabel": {
+          "en": "Get started free",
+          "ar": "ابدأ مجانا"
+        },
+        "featured": false
+      },
+      {
+        "name": {
+          "en": "Premium Plan",
+          "ar": "الخطة المتميزة"
+        },
+        "badge": {
+          "en": "Most popular",
+          "ar": "الأكثر شعبية"
+        },
+        "monthlyPrice": "$9.99/mth",
+        "yearlyPrice": "17/year(Save $99.99)",
+        "description": {
+          "en": "Everything in the personal plan plus advanced analytics and export.",
+          "ar": "كل ما في الخطة الشخصية إضافة إلى تحليلات متقدمة وتصدير البيانات."
+        },
+        "features": [
+          {
+            "en": "Everything in the personal plan",
+            "ar": "كل ما في الخطة الشخصية"
+          },
+          {
+            "en": "Advanced analytics",
+            "ar": "تحليلات متقدمة"
+          },
+          {
+            "en": "Data export",
+            "ar": "تصدير البيانات"
+          },
+          {
+            "en": "Detailed monthly reports",
+            "ar": "تقارير شهرية مفصلة"
+          },
+          {
+            "en": "Schedule custom reminders",
+            "ar": "جدولة تذكيرات مخصصة"
+          }
+        ],
+        "ctaLabel": {
+          "en": "Get started",
+          "ar": "ابدأ الآن"
+        },
+        "featured": true
+      },
+      {
+        "name": {
+          "en": "Personal Plan",
+          "ar": "الخطة الشخصية"
+        },
+        "badge": {
+          "en": "",
+          "ar": ""
+        },
+        "monthlyPrice": "$4.99/mth",
+        "yearlyPrice": "17/year(Save $49.99)",
+        "description": {
+          "en": "Expanded tracking and weekly insights for personal growth.",
+          "ar": "تتبع موسع ورؤى أسبوعية للنمو الشخصي."
+        },
+        "features": [
+          {
+            "en": "Recording Unlimited Emotion",
+            "ar": "تسجيل مشاعر غير محدود"
+          },
+          {
+            "en": "Capturing the context (people, location, activity)",
+            "ar": "تسجيل السياق (الأشخاص، الموقع، النشاط)"
+          },
+          {
+            "en": "A 90-day history of emotions",
+            "ar": "سجل المشاعر لمدة 90 يوما"
+          },
+          {
+            "en": "Weekly trend analysis",
+            "ar": "تحليل الاتجاهات الأسبوعية"
+          },
+          {
+            "en": "Export data (CSV/PDF)",
+            "ar": "تصدير البيانات (CSV/PDF)"
+          }
+        ],
+        "ctaLabel": {
+          "en": "Get started",
+          "ar": "ابدأ الآن"
+        },
+        "featured": false
+      }
+    ],
+    "order": 6,
+    "isPublished": true
+  },
+  {
+    "key": "faq",
+    "title": {
+      "en": "Frequently asked questions",
+      "ar": "الأسئلة الشائعة"
+    },
+    "subtitle": {
+      "en": "Questions",
+      "ar": "الأسئلة"
+    },
+    "body": {
+      "en": "Everything you need to know about Shuoori.",
+      "ar": "كل ما تحتاج لمعرفته عن Shuoori."
+    },
+    "images": [],
+    "items": [
+      {
+        "question": {
+          "en": "Is my emotional data private and secure?",
+          "ar": "هل بياناتي العاطفية خاصة وآمنة؟"
+        },
+        "answer": {
+          "en": "Absolutely. Your data is encrypted end-to-end and stored securely. We never sell, share, or use your emotional data for advertising. Shuoori is a private sanctuary your entries are yours alone.",
+          "ar": "نعم تماما. بياناتك مشفرة بالكامل وتخزن بأمان. لا نبيع أو نشارك بياناتك ولا نستخدمها للإعلانات. مدخلاتك ملك لك وحدك."
+        }
+      },
+      {
+        "question": {
+          "en": "How long does it take to log an emotion?",
+          "ar": "كم يستغرق تسجيل المشاعر؟"
+        },
+        "answer": {
+          "en": "Most people log an emotion in under 60 seconds. You can tap, add context, and save quickly.",
+          "ar": "أغلب المستخدمين يسجلون شعورا خلال أقل من 60 ثانية. يمكنك الاختيار وإضافة السياق والحفظ بسرعة."
+        }
+      },
+      {
+        "question": {
+          "en": "Is Shuoori a replacement for therapy?",
+          "ar": "هل Shuoori بديل عن العلاج النفسي؟"
+        },
+        "answer": {
+          "en": "No. Shuoori is a supportive self-reflection tool and does not replace professional care.",
+          "ar": "لا. Shuoori أداة للتأمل الذاتي ولا تغني عن الرعاية المتخصصة."
+        }
+      },
+      {
+        "question": {
+          "en": "Can I export my data?",
+          "ar": "هل يمكنني تصدير بياناتي؟"
+        },
+        "answer": {
+          "en": "Yes, you can export your data anytime from the settings section.",
+          "ar": "نعم، يمكنك تصدير بياناتك في أي وقت من الإعدادات."
+        }
+      },
+      {
+        "question": {
+          "en": "What platforms is Shuoori available on?",
+          "ar": "على أي منصات يتوفر Shuoori؟"
+        },
+        "answer": {
+          "en": "Shuoori is available on iOS, Android, and web.",
+          "ar": "يتوفر Shuoori على iOS وAndroid والويب."
+        }
+      },
+      {
+        "question": {
+          "en": "Can I cancel my subscription at any time?",
+          "ar": "هل يمكنني إلغاء الاشتراك في أي وقت؟"
+        },
+        "answer": {
+          "en": "Yes. You can cancel your subscription at any time without penalties.",
+          "ar": "نعم. يمكنك الإلغاء في أي وقت بدون غرامات."
+        }
+      }
+    ],
+    "order": 7,
+    "isPublished": true
+  },
+  {
+    "key": "final_cta",
+    "title": {
+      "en": "Your emotional wellness journey starts today",
+      "ar": "رحلتك نحو الرفاه العاطفي تبدأ اليوم"
+    },
+    "subtitle": {
+      "en": "Try Now",
+      "ar": "جرب الآن"
+    },
+    "body": {
+      "en": "Download Shuoori for free. Start tracking in under a minute. Join 50,000+ people who've already transformed their emotional health.",
+      "ar": "حمل Shuoori مجانا. ابدأ التتبع خلال أقل من دقيقة. انضم لأكثر من 50,000 شخص ممن غيروا صحتهم العاطفية."
+    },
+    "images": [
+      {
+        "url": "https://www.figma.com/api/mcp/asset/5605f90f-08ab-4d7f-9039-4a64a1f3cdf0",
+        "alt": {
+          "en": "Emotion wheel background",
+          "ar": "خلفية عجلة المشاعر"
+        },
+        "key": "legacy/final-cta-blob"
+      }
+    ],
+    "items": [
+      {
+        "title": {
+          "en": "Pick Emotion & Intensity",
+          "ar": "اختر الشعور والشدة"
+        },
+        "description": {
+          "en": "Quick, intuitive wheel selection and continuous intensity slider.",
+          "ar": "تحديد سريع وسهل للمشاعر عبر العجلة وشريط الشدة."
+        }
+      },
+      {
+        "title": {
+          "en": "Add Activities, Locations & People",
+          "ar": "أضف الأنشطة والأماكن والرفقاء"
+        },
+        "description": {
+          "en": "Log where you were, what you were doing, and who you were with.",
+          "ar": "سجل أين كنت، ماذا كنت تفعل، ومع من كنت."
+        }
+      },
+      {
+        "title": {
+          "en": "Tap to Speak Journaling",
+          "ar": "التدوين الصوتي بضغطة زر"
+        },
+        "description": {
+          "en": "Just speak naturally to convert your voice into a rich journal note.",
+          "ar": "تحدث بشكل طبيعي لتحويل صوتك إلى نص وملاحظة عاطفية غنية."
+        }
+      }
+    ],
+    "order": 8,
+    "isPublished": true
+  },
+  {
+    "key": "footer",
+    "title": {
+      "en": "© 2026 Shuoori. Made with care for your wellbeing.",
+      "ar": "© 2026 Shuoori. صنع بعناية من أجل رفاهك."
+    },
+    "subtitle": {
+      "en": "Footer",
+      "ar": "التذييل"
+    },
+    "body": {
+      "en": "Footer navigation and brand mark.",
+      "ar": "روابط التذييل وعلامة العلامة التجارية."
+    },
+    "images": [
+      {
+        "url": "/logo.png",
+        "alt": {
+          "en": "Shuoori logo",
+          "ar": "شعار شعوري"
+        },
+        "key": "legacy/logo.png"
+      }
+    ],
+    "items": [
+      {
+        "label": {
+          "en": "Features",
+          "ar": "الميزات"
+        },
+        "href": "#features"
+      },
+      {
+        "label": {
+          "en": "How it works",
+          "ar": "كيف يعمل"
+        },
+        "href": "#how"
+      },
+      {
+        "label": {
+          "en": "Stories",
+          "ar": "قصص"
+        },
+        "href": "#stories"
+      },
+      {
+        "label": {
+          "en": "Pricing",
+          "ar": "الأسعار"
+        },
+        "href": "#pricing"
+      },
+      {
+        "label": {
+          "en": "FAQ",
+          "ar": "الأسئلة الشائعة"
+        },
+        "href": "#faq"
+      }
+    ],
+    "order": 9,
+    "isPublished": true
+  }
+]
