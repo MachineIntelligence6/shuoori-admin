@@ -87,11 +87,35 @@ function isVideoUrl(url: string) {
   return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url)
 }
 
+const LANDING_ORIGIN = (process.env.NEXT_PUBLIC_LANDING_ORIGIN ?? "").replace(/\/$/, "")
+
+function inferredLandingOrigin() {
+  if (typeof window === "undefined") return ""
+
+  if (/^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)) {
+    const host = window.location.hostname === "127.0.0.1" ? "127.0.0.1" : "localhost"
+    return `http://${host}:5173`
+  }
+
+  if (window.location.hostname === "cms.shuoori.com") {
+    return "https://shuoori.com"
+  }
+
+  if (window.location.hostname.startsWith("cms.")) {
+    return `${window.location.protocol}//${window.location.hostname.replace(/^cms\./, "")}`
+  }
+
+  return ""
+}
+
 function previewUrl(url: string) {
   if (!url) return ""
   if (/^(https?:)?\/\//i.test(url)) return url
   const path = url.startsWith("/") ? url : `/${url}`
-  return `http://localhost:5173${path}`
+  const origin = LANDING_ORIGIN || inferredLandingOrigin()
+  if (origin) return `${origin}${path}`
+  if (typeof window !== "undefined") return `${window.location.origin}${path}`
+  return path
 }
 
 function redirectIfUnauthorized(response: Response) {
@@ -121,6 +145,7 @@ export default function AdminDashboard() {
   const [isDbConnected, setIsDbConnected] = useState<boolean>(true)
   const [message, setMessage] = useState("")
   const [deletingRowIndex, setDeletingRowIndex] = useState<number | null>(null)
+  const [failedPreviewUrls, setFailedPreviewUrls] = useState<Record<string, boolean>>({})
 
   const orderedSections = useMemo(
     () =>
@@ -369,6 +394,11 @@ export default function AdminDashboard() {
     updateSelected({ images: nextImages })
   }
 
+  function markPreviewFailed(url: string) {
+    if (!url) return
+    setFailedPreviewUrls((current) => ({ ...current, [url]: true }))
+  }
+
   async function signOut() {
     await fetch("/api/admin/logout", { method: "POST" }).catch(() => undefined)
     window.location.href = "/login"
@@ -384,7 +414,7 @@ export default function AdminDashboard() {
                 <div className="relative h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-gradient-to-tr from-[#2EB8AA] via-[#EC4899] to-[#F59E0B] p-[1.5px] shadow-sm">
                   <div className="flex h-full w-full items-center justify-center rounded-full bg-white">
                     <img
-                      src="http://localhost:5173/logo.svg"
+                      src={previewUrl("/logo.svg")}
                       className="h-5 w-5 object-contain"
                       onError={(e) => {
                         e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232EB8AA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'%3E%3C/circle%3E%3Cpolyline points='21 15 16 10 5 21'%3E%3C/polyline%3E%3C/svg%3E";
@@ -613,6 +643,7 @@ export default function AdminDashboard() {
                           const media = selected.images[mediaIndex] || { url: "", key: "", alt: { en: "", ar: "" } }
                           const resolvedPreviewUrl = previewUrl(media.url)
                           const hasAsset = Boolean(media.url)
+                          const previewFailed = Boolean(resolvedPreviewUrl && failedPreviewUrls[resolvedPreviewUrl])
 
                           return (
                             <div className="rounded-2xl border border-[#E4E6EA]/80 bg-[#FAF9F6] p-4 shadow-sm" key={`${slotLabel}-${mediaIndex}`}>
@@ -634,7 +665,13 @@ export default function AdminDashboard() {
                               </div>
 
                               <div className="overflow-hidden rounded-xl border border-[#E4E6EA]/80 bg-[#101827] flex items-center justify-center p-2 h-48 shadow-inner">
-                                {isVideoUrl(media.url) ? (
+                                {previewFailed ? (
+                                  <div className="flex flex-col items-center justify-center text-center p-4">
+                                    <AlertTriangle className="h-8 w-8 text-amber-300 mb-2" />
+                                    <p className="text-xs font-semibold text-slate-300">Preview unavailable</p>
+                                    <p className="text-[10px] text-slate-400 mt-1 break-all">{resolvedPreviewUrl}</p>
+                                  </div>
+                                ) : isVideoUrl(media.url) ? (
                                   <video
                                     className="h-full w-full object-contain rounded-lg"
                                     src={resolvedPreviewUrl ? (resolvedPreviewUrl.includes("#t=") ? resolvedPreviewUrl : `${resolvedPreviewUrl}#t=0.001`) : ""}
@@ -642,9 +679,15 @@ export default function AdminDashboard() {
                                     muted
                                     preload="metadata"
                                     playsInline
+                                    onError={() => markPreviewFailed(resolvedPreviewUrl)}
                                   />
                                 ) : media.url ? (
-                                  <img className="h-full max-h-full max-w-full object-contain" src={resolvedPreviewUrl} alt={media.alt.en || slotLabel} />
+                                  <img
+                                    className="h-full max-h-full max-w-full object-contain"
+                                    src={resolvedPreviewUrl}
+                                    alt={media.alt.en || slotLabel}
+                                    onError={() => markPreviewFailed(resolvedPreviewUrl)}
+                                  />
                                 ) : (
                                   <div className="flex flex-col items-center justify-center text-center p-4">
                                     <ImagePlus className="h-8 w-8 text-slate-300 mb-2" />
