@@ -1,0 +1,42 @@
+:root {
+  --color-bg: #FCFBF8;
+  --color-surface: #ffffff;
+  --color-primary: #2eb8aa;
+  --color-primary-contrast: #ffffff;
+  --color-border: #e4e6ea;
+  --color-text: #101827;
+  --color-text-muted: #4a5462;
+  --color-muted: #999999;
+  --color-accent: #2eb8aa;
+  --color-header-bg: #ffffff;
+
+  /* Fonts */
+  --font-sans: "Tajawal", "IBM Plex Sans", "Open Sans", system-ui, -apple-system, sans-serif;
+  --font-heading: "Tajawal", "IBM Plex Sans", "Open Sans", system-ui, -apple-system, sans-serif;
+  --font-sans-en: "IBM Plex Sans", "Open Sans", system-ui, -apple-system, sans-serif;
+  --font-heading-en: "IBM Plex Sans", "Open Sans", system-ui, -apple-system, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 4rem;
+
+  --gradient-primary: linear-gradient(180deg, #2eb8aa 0%, #2eb8aa 100%);
+  --gradient-highlight: linear-gradient(90deg, #2eb8aa 0%, #6ad8c9 100%);
+  --gradient-cta: linear-gradient(180deg, #2eb8aa 0%, #2eb8aa 100%);
+  --gradient-pricing-unfilled: linear-gradient(180deg, rgba(46, 184, 170, 0.08) 0%, rgba(46, 184, 170, 0.08) 100%);
+  --gradient-pricing-border: linear-gradient(90deg, #2eb8aa 0%, #2eb8aa 100%);
+  --shadow-primary: 0px 4px 32.9px 0px rgba(46, 184, 170, 0.2);
+  --shadow-soft: 0px 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+html[lang="en"] {
+  --font-sans: var(--font-sans-en);
+  --font-heading: var(--font-heading-en);
+}

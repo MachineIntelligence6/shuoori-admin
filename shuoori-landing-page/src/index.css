@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Open+Sans:wght@400;600;700&family=Tajawal:wght@400;500;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+@import "./styles/tokens.css";
+@import "./styles/base.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

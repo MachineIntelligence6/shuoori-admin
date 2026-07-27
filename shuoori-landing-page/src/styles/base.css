@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.hero-rings {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(130, 140, 150, 0.08) 0 140px, transparent 140px),
+    radial-gradient(circle at 50% 38%, rgba(130, 140, 150, 0.06) 140px 260px, transparent 260px),
+    radial-gradient(circle at 50% 38%, rgba(130, 140, 150, 0.05) 260px 380px, transparent 380px),
+    radial-gradient(circle at 50% 38%, rgba(130, 140, 150, 0.04) 380px 500px, transparent 500px),
+    radial-gradient(circle at 50% 38%, rgba(130, 140, 150, 0.03) 500px 620px, transparent 620px),
+    radial-gradient(circle at 50% 38%, rgba(130, 140, 150, 0.025) 620px 740px, transparent 740px);
+  opacity: 0.45;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.btn-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-text {
+  display: inline-block;
+}
+
+.btn-icon {
+  display: block;
+  align-self: center;
+}
+
+html[lang="ar"] .btn-text {
+  transform: translateY(1px);
+}
