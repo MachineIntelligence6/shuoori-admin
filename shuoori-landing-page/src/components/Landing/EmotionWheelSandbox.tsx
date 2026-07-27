@@ -5,6 +5,7 @@ import type { Locale } from "../../i18n"
 type EmotionWheelSandboxProps = {
     locale: Locale
     t: (en: string, ar: string) => string
+    readOnly?: boolean
 }
 
 type LocalizedLabel = {
@@ -39,6 +40,9 @@ const CORE_SEGMENT_SPAN = 52
 const DETAIL_SEGMENT_SPAN = 90
 const VIEWBOX_SIZE = 460
 const CENTER = VIEWBOX_SIZE / 2
+const AUTOPLAY_STEP_COUNT = 8
+const AUTOPLAY_STEP_MS = 1700
+const AUTOPLAY_INTENSITIES = [78, 72, 84, 68, 88, 74]
 
 const label = (en: string, ar = en): LocalizedLabel => ({ en, ar })
 
@@ -399,14 +403,6 @@ function getMotionOffset(angle: number, distance: number) {
     }
 }
 
-type Particle = {
-    id: number
-    emoji: string
-    x: number
-    y: number
-    size: number
-}
-
 const EMOTION_BGS: Record<string, string> = {
     love: "#FFA2C7",
     joy: "#68E1BC",
@@ -465,7 +461,7 @@ const PEOPLE = [
     { en: "Other", ar: "آخر" }
 ]
 
-export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxProps) {
+export default function EmotionWheelSandbox({ locale, readOnly = false }: EmotionWheelSandboxProps) {
     const isRtl = locale === "ar"
     
     // Selection state
@@ -474,7 +470,6 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
     const [intensityValue, setIntensityValue] = useState(50) // 0 to 100 continuous range
     const intensity = intensityValue < 33 ? "light" : intensityValue < 66 ? "medium" : "strong"
     const [isLogged, setIsLogged] = useState(false)
-    const [particles, setParticles] = useState<Particle[]>([])
     const [isAutoplay, setIsAutoplay] = useState(true)
     const [autoplayStep, setAutoplayStep] = useState(0)
     const [autoplayCoreIndex, setAutoplayCoreIndex] = useState(0)
@@ -527,6 +522,7 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
     }, [recognition])
 
     const toggleListening = () => {
+        if (readOnly) return
         setIsAutoplay(false)
         if (!recognition) {
             if (isListening) {
@@ -562,6 +558,10 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
     const activeEmotion = activeIndex !== null ? EMOTION_GROUPS[activeIndex] : null
     const activeDetail = activeEmotion && selectedDetailIndex !== null ? activeEmotion.details[selectedDetailIndex] : null
     const activeTones = activeEmotion ? EMOTION_TONES[activeEmotion.id] : null
+    const moodTintOpacity = activeEmotion
+        ? (step > 0 || isLogged ? 0.32 + (intensityValue / 100) * 0.5 : 0.15 + (intensityValue / 100) * 0.85)
+        : 0
+    const sliderAccent = activeEmotion?.color ?? "#85D3C9"
 
     // Determine the current visual phase
     const phase = activeIndex !== null ? "middle" : "core"
@@ -584,13 +584,13 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
 
         const interval = setInterval(() => {
             setAutoplayStep((prev) => {
-                const next = (prev + 1) % 8
+                const next = (prev + 1) % AUTOPLAY_STEP_COUNT
                 if (next === 0) {
                     setAutoplayCoreIndex((core) => (core + 1) % EMOTION_GROUPS.length)
                 }
                 return next
             })
-        }, 2200)
+        }, AUTOPLAY_STEP_MS)
 
         return () => clearInterval(interval)
     }, [isAutoplay])
@@ -607,9 +607,10 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
             setSelectedLocation(null)
             setSelectedPeople([])
             setJournalText("")
-            setParticles([])
+            setIntensityValue(24)
         } else if (autoplayStep === 1) {
             setActiveIndex(autoplayCoreIndex)
+            setSelectedDetailIndex(null)
         } else if (autoplayStep === 2) {
             setSelectedDetailIndex(EMOTION_GROUPS[autoplayCoreIndex].previewIndex)
         } else if (autoplayStep === 3) {
@@ -626,17 +627,33 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
             setJournalText(isRtl ? "أشعر براحة وسعادة شديدة الآن." : "I am feeling really relaxed and happy right now.")
         } else if (autoplayStep === 7) {
             setIsLogged(true)
-            const activeEmoji = EMOTION_GROUPS[autoplayCoreIndex].emoji
-            const newParticles = Array.from({ length: 18 }).map((_, i) => ({
-                id: Date.now() + i,
-                emoji: activeEmoji,
-                x: Math.random() * 200 - 100,
-                y: Math.random() * -100 - 150,
-                size: Math.random() * 20 + 20
-            }))
-            setParticles(newParticles)
         }
     }, [autoplayStep, isAutoplay, autoplayCoreIndex, isRtl])
+
+    useEffect(() => {
+        if (!isAutoplay || autoplayStep < 1 || autoplayStep > 2) return
+
+        const target = AUTOPLAY_INTENSITIES[autoplayCoreIndex % AUTOPLAY_INTENSITIES.length]
+        const start = autoplayStep === 1 ? 24 : Math.max(48, target - 24)
+        const end = autoplayStep === 1 ? Math.max(52, target - 18) : target
+        const duration = AUTOPLAY_STEP_MS - 220
+        const startedAt = performance.now()
+        let frame = 0
+
+        setIntensityValue(start)
+
+        const animate = (now: number) => {
+            const progress = Math.min((now - startedAt) / duration, 1)
+            const eased = 1 - Math.pow(1 - progress, 3)
+            setIntensityValue(Math.round(start + (end - start) * eased))
+            if (progress < 1) {
+                frame = requestAnimationFrame(animate)
+            }
+        }
+
+        frame = requestAnimationFrame(animate)
+        return () => cancelAnimationFrame(frame)
+    }, [autoplayStep, isAutoplay, autoplayCoreIndex])
 
     // Device Tilt Tilt parallax
     const [tilt, setTilt] = useState({ x: 0, y: 0 })
@@ -651,17 +668,20 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
     }
 
     const handleCoreClick = (index: number) => {
+        if (readOnly) return
         setIsAutoplay(false)
         setActiveIndex(index)
         setSelectedDetailIndex(null)
     }
 
     const handleMiddleClick = (index: number) => {
+        if (readOnly) return
         setIsAutoplay(false)
         setSelectedDetailIndex(index)
     }
 
     const handleReset = () => {
+        if (readOnly) return
         setIsAutoplay(false)
         if (recognition && isListening) {
             try {
@@ -679,6 +699,7 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
     }
 
     const handleBack = () => {
+        if (readOnly) return
         setIsAutoplay(false)
         if (step > 0) {
             setStep(step - 1)
@@ -686,6 +707,7 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
     }
 
     const handleContinue = () => {
+        if (readOnly) return
         setIsAutoplay(false)
         if (step < 4) {
             setStep(step + 1)
@@ -695,52 +717,22 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
     }
 
     const handleSaveEntry = () => {
+        if (readOnly) return
         setIsAutoplay(false)
         setIsLogged(true)
-        
-        // Spawn emojis
-        const activeEmoji = activeEmotion?.emoji ?? "✨"
-        const newParticles = Array.from({ length: 18 }).map((_, i) => ({
-            id: Date.now() + i,
-            emoji: activeEmoji,
-            x: Math.random() * 200 - 100,
-            y: Math.random() * -100 - 150,
-            size: Math.random() * 20 + 20
-        }))
-        setParticles(newParticles)
-    }
-
-    const handleLogAnother = () => {
-        setIsAutoplay(false)
-        if (recognition && isListening) {
-            try {
-                recognition.stop()
-            } catch (e) {}
-        }
-        setIsListening(false)
-        setIsLogged(false)
-        setActiveIndex(null)
-        setSelectedDetailIndex(null)
-        setIntensityValue(50)
-        setStep(0)
-        setSelectedActivities([])
-        setSelectedLocation(null)
-        setSelectedPeople([])
-        setJournalText("")
-        setParticles([])
     }
 
     return (
         <div 
             className="relative flex w-full justify-center perspective-[1000px] py-4"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            onMouseMove={readOnly ? undefined : handleMouseMove}
+            onMouseLeave={readOnly ? undefined : handleMouseLeave}
         >
             {/* Phone Container */}
             <motion.div 
                 animate={{ rotateY: tilt.x, rotateX: tilt.y }}
                 transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                onMouseEnter={() => setIsAutoplay(false)}
+                onMouseEnter={readOnly ? undefined : () => setIsAutoplay(false)}
                 className="relative w-[320px] h-[660px] rounded-[48px] border-[12px] border-[#0c1319] bg-[#0c1319] shadow-[0_25px_60px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col select-none ring-1 ring-white/10"
             >
                 {/* Dynamic Island */}
@@ -750,7 +742,7 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
 
                 {/* Main Screen */}
                 <div 
-                    className="flex-1 bg-[#FCFBF8] rounded-[36px] overflow-hidden flex flex-col relative pt-[24px] pb-[16px] px-5"
+                    className="flex-1 rounded-[36px] overflow-hidden flex flex-col relative pt-[24px] pb-[16px] px-5 bg-[#FCFBF8]"
                     dir={isRtl ? "rtl" : "ltr"}
                 >
                     {activeEmotion && (
@@ -758,8 +750,8 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                             className="absolute inset-0 pointer-events-none z-0"
                             style={{ 
                                 backgroundColor: EMOTION_BGS[activeEmotion.id],
-                                opacity: step > 0 ? 0.65 : 0.15 + (intensityValue / 100) * 0.85,
-                                transition: "background-color 300ms ease"
+                                opacity: moodTintOpacity,
+                                transition: "background-color 300ms ease, opacity 500ms ease"
                             }}
                         />
                     )}
@@ -795,7 +787,11 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                             </h2>
                                             <button 
                                                 onClick={handleReset}
-                                                className="absolute right-0 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm border border-gray-100 hover:scale-105 active:scale-95 transition-transform"
+                                                aria-disabled={readOnly}
+                                                tabIndex={readOnly ? -1 : undefined}
+                                                className={`absolute right-0 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm border border-gray-100 transition-transform ${
+                                                    readOnly ? "pointer-events-none cursor-default" : "hover:scale-105 active:scale-95"
+                                                }`}
                                                 aria-label="Close"
                                             >
                                                 <svg className="w-3.5 h-3.5 text-[#283244]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -849,8 +845,8 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                                 return (
                                                                     <motion.g
                                                                         key={`${activeEmotion.id}-${detail.middle.en}`}
-                                                                        className="cursor-pointer"
-                                                                        onClick={() => handleMiddleClick(index)}
+                                                                        className={readOnly ? "cursor-default" : "cursor-pointer"}
+                                                                        onClick={readOnly ? undefined : () => handleMiddleClick(index)}
                                                                         initial={{ opacity: 0, x: offset.x, y: offset.y, scale: 0.96 }}
                                                                         animate={{
                                                                             opacity: 1,
@@ -859,7 +855,7 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                                             scale: 1,
                                                                         }}
                                                                         exit={{ opacity: 0, x: offset.x, y: offset.y, scale: 0.96 }}
-                                                                        whileHover={{ scale: 1.02 }}
+                                                                        whileHover={readOnly ? undefined : { scale: 1.02 }}
                                                                         transition={{ duration: 0.28, ease: "easeOut" }}
                                                                         style={{ transformOrigin: `${labelTransform.x}px ${labelTransform.y}px` }}
                                                                     >
@@ -906,8 +902,8 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                     return (
                                                         <g
                                                             key={emotion.id}
-                                                            className="cursor-pointer"
-                                                            onClick={() => handleCoreClick(index)}
+                                                            className={readOnly ? "cursor-default" : "cursor-pointer"}
+                                                            onClick={readOnly ? undefined : () => handleCoreClick(index)}
                                                         >
                                                             <motion.path
                                                                 d={path}
@@ -936,7 +932,7 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                 })}
 
                                                 {/* Center Hub */}
-                                                <g className="cursor-pointer" onClick={handleReset}>
+                                                <g className={readOnly ? "cursor-default" : "cursor-pointer"} onClick={readOnly ? undefined : handleReset}>
                                                     <circle cx={CENTER} cy={CENTER} r="54" fill="#FFFFFF" opacity="0.25" />
                                                     <circle cx={CENTER} cy={CENTER} r="50" fill="#FFFFFF" filter="url(#hubShadow)" />
                                                     <circle cx={CENTER} cy={CENTER} r="46" fill="#FFFFFF" />
@@ -966,13 +962,18 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                         min="0" 
                                                         max="100" 
                                                         value={intensityValue}
+                                                        aria-disabled={readOnly}
+                                                        tabIndex={readOnly ? -1 : undefined}
                                                         onChange={(e) => {
+                                                            if (readOnly) return
                                                             setIsAutoplay(false)
                                                             setIntensityValue(parseInt(e.target.value))
                                                         }}
-                                                        className="w-full appearance-none h-2.5 rounded-full outline-none cursor-pointer"
+                                                        className={`w-full appearance-none h-2.5 rounded-full outline-none ${readOnly ? "pointer-events-none cursor-default" : "cursor-pointer"}`}
                                                         style={{
-                                                            background: activeEmotion ? "rgba(255,255,255,0.45)" : "#E4E6EA",
+                                                            background: activeEmotion
+                                                                ? `linear-gradient(to right, ${sliderAccent} 0%, ${sliderAccent} ${intensityValue}%, rgba(255,255,255,0.45) ${intensityValue}%, rgba(255,255,255,0.45) 100%)`
+                                                                : `linear-gradient(to right, #85D3C9 0%, #85D3C9 ${intensityValue}%, #E4E6EA ${intensityValue}%, #E4E6EA 100%)`,
                                                         }}
                                                     />
                                                     <style>{`
@@ -983,20 +984,20 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                             height: 24px;
                                                             border-radius: 50%;
                                                             background: #FFFFFF;
-                                                            cursor: pointer;
+                                                            cursor: ${readOnly ? "default" : "pointer"};
                                                             box-shadow: 0 4px 8px rgba(0,0,0,0.12);
                                                             border: 1.5px solid ${activeEmotion ? activeEmotion.color : "#E4E6EA"};
                                                             transition: transform 0.15s ease;
                                                         }
                                                         input[type='range']::-webkit-slider-thumb:hover {
-                                                            transform: scale(1.1);
+                                                            transform: ${readOnly ? "none" : "scale(1.1)"};
                                                         }
                                                         input[type='range']::-moz-range-thumb {
                                                             width: 24px;
                                                             height: 24px;
                                                             border-radius: 50%;
                                                             background: #FFFFFF;
-                                                            cursor: pointer;
+                                                            cursor: ${readOnly ? "default" : "pointer"};
                                                             box-shadow: 0 4px 8px rgba(0,0,0,0.12);
                                                             border: 1.5px solid ${activeEmotion ? activeEmotion.color : "#E4E6EA"};
                                                             transition: transform 0.15s ease;
@@ -1020,7 +1021,11 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                             {/* Continue Button */}
                                             <button
                                                 onClick={handleContinue}
-                                                className="w-full py-3.5 rounded-[16px] text-[14px] font-bold transition-all shadow-md active:scale-[0.98] flex items-center justify-center gap-2"
+                                                aria-disabled={readOnly}
+                                                tabIndex={readOnly ? -1 : undefined}
+                                                className={`w-full py-3.5 rounded-[16px] text-[14px] font-bold transition-all shadow-md flex items-center justify-center gap-2 ${
+                                                    readOnly ? "pointer-events-none cursor-default" : "active:scale-[0.98]"
+                                                }`}
                                                 style={{ 
                                                     backgroundColor: activeEmotion ? activeEmotion.color : "#85D3C9",
                                                     color: activeEmotion && (activeEmotion.id === "surprise" || activeEmotion.id === "joy") ? "#283244" : "#FFFFFF"
@@ -1037,7 +1042,11 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                         <div className="relative flex w-full items-center justify-between pt-1 pb-1">
                                             <button 
                                                 onClick={handleBack}
-                                                className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm hover:scale-105 active:scale-95 transition-transform"
+                                                aria-disabled={readOnly}
+                                                tabIndex={readOnly ? -1 : undefined}
+                                                className={`flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm transition-transform ${
+                                                    readOnly ? "pointer-events-none cursor-default" : "hover:scale-105 active:scale-95"
+                                                }`}
                                                 aria-label="Back"
                                             >
                                                 <svg className="w-4 h-4 text-[#283244]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -1049,7 +1058,11 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                             </h2>
                                             <button 
                                                 onClick={handleReset}
-                                                className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm hover:scale-105 active:scale-95 transition-transform"
+                                                aria-disabled={readOnly}
+                                                tabIndex={readOnly ? -1 : undefined}
+                                                className={`flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-sm transition-transform ${
+                                                    readOnly ? "pointer-events-none cursor-default" : "hover:scale-105 active:scale-95"
+                                                }`}
                                                 aria-label="Close"
                                             >
                                                 <svg className="w-4 h-4 text-[#283244]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -1124,17 +1137,20 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                         return (
                                                             <button
                                                                 key={act.en}
+                                                                aria-disabled={readOnly}
+                                                                tabIndex={readOnly ? -1 : undefined}
                                                                 onClick={() => {
+                                                                    if (readOnly) return
                                                                     setSelectedActivities(prev => 
                                                                         prev.includes(labelStr) 
                                                                             ? prev.filter(x => x !== labelStr)
                                                                             : [...prev, labelStr]
                                                                     );
                                                                 }}
-                                                                className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${
+                                                                className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${readOnly ? "pointer-events-none cursor-default" : ""} ${
                                                                     isSelected 
                                                                         ? "border-transparent shadow-md scale-[1.03]"
-                                                                        : "bg-white/80 border-[#E4E6EA] text-[#283244] hover:bg-white shadow-sm"
+                                                                        : `bg-white/80 border-[#E4E6EA] text-[#283244] shadow-sm ${readOnly ? "" : "hover:bg-white"}`
                                                                 }`}
                                                                 style={isSelected ? { backgroundColor: activeBg, color: activeTextColor } : {}}
                                                             >
@@ -1164,13 +1180,16 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                         return (
                                                             <button
                                                                 key={loc.en}
+                                                                aria-disabled={readOnly}
+                                                                tabIndex={readOnly ? -1 : undefined}
                                                                 onClick={() => {
+                                                                    if (readOnly) return
                                                                     setSelectedLocation(isSelected ? null : labelStr);
                                                                 }}
-                                                                className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${
+                                                                className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${readOnly ? "pointer-events-none cursor-default" : ""} ${
                                                                     isSelected 
                                                                         ? "border-transparent shadow-md scale-[1.03]"
-                                                                        : "bg-white/80 border-[#E4E6EA] text-[#283244] hover:bg-white shadow-sm"
+                                                                        : `bg-white/80 border-[#E4E6EA] text-[#283244] shadow-sm ${readOnly ? "" : "hover:bg-white"}`
                                                                 }`}
                                                                 style={isSelected ? { backgroundColor: activeBg, color: activeTextColor } : {}}
                                                             >
@@ -1200,17 +1219,20 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                         return (
                                                             <button
                                                                 key={pep.en}
+                                                                aria-disabled={readOnly}
+                                                                tabIndex={readOnly ? -1 : undefined}
                                                                 onClick={() => {
+                                                                    if (readOnly) return
                                                                     setSelectedPeople(prev => 
                                                                         prev.includes(labelStr) 
                                                                             ? prev.filter(x => x !== labelStr)
                                                                             : [...prev, labelStr]
                                                                     );
                                                                 }}
-                                                                className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${
+                                                                className={`px-3.5 py-1.5 rounded-full text-[12px] font-extrabold transition-all duration-150 border ${readOnly ? "pointer-events-none cursor-default" : ""} ${
                                                                     isSelected 
                                                                         ? "border-transparent shadow-md scale-[1.03]"
-                                                                        : "bg-white/80 border-[#E4E6EA] text-[#283244] hover:bg-white shadow-sm"
+                                                                        : `bg-white/80 border-[#E4E6EA] text-[#283244] shadow-sm ${readOnly ? "" : "hover:bg-white"}`
                                                                 }`}
                                                                 style={isSelected ? { backgroundColor: activeBg, color: activeTextColor } : {}}
                                                             >
@@ -1233,17 +1255,30 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                                 
                                                 <textarea
                                                     value={journalText}
-                                                    onChange={(e) => setJournalText(e.target.value)}
+                                                    readOnly={readOnly}
+                                                    aria-readonly={readOnly}
+                                                    tabIndex={readOnly ? -1 : undefined}
+                                                    onFocus={(e) => {
+                                                        if (readOnly) e.currentTarget.blur()
+                                                    }}
+                                                    onChange={(e) => {
+                                                        if (readOnly) return
+                                                        setJournalText(e.target.value)
+                                                    }}
                                                     placeholder={isRtl ? "ماذا حدث؟ كيف تشعر حيال ذلك؟ اكتب أفكارك هنا..." : "What happened? How do you feel about it? Write or speak your thoughts..."}
-                                                    className="w-full h-[150px] rounded-[18px] bg-white/40 border border-white/10 p-3 text-[12px] text-[#283244] placeholder-[#283244]/50 focus:outline-none focus:bg-white/65 resize-none mt-1.5 scrollbar-thin"
+                                                    className={`w-full h-[150px] rounded-[18px] bg-white/40 border border-white/10 p-3 text-[12px] text-[#283244] placeholder-[#283244]/50 resize-none mt-1.5 scrollbar-thin ${
+                                                        readOnly ? "pointer-events-none cursor-default select-none" : "focus:outline-none focus:bg-white/65"
+                                                    }`}
                                                 />
                                                 
                                                 <button 
                                                     onClick={toggleListening}
-                                                    className={`w-full py-2.5 rounded-[12px] border text-[12px] font-bold flex items-center justify-center gap-1.5 mt-1.5 active:scale-98 transition-all ${
+                                                    aria-disabled={readOnly}
+                                                    tabIndex={readOnly ? -1 : undefined}
+                                                    className={`w-full py-2.5 rounded-[12px] border text-[12px] font-bold flex items-center justify-center gap-1.5 mt-1.5 transition-all ${
                                                         isListening
                                                             ? "bg-red-500 text-white border-transparent animate-pulse shadow-md"
-                                                            : "bg-white/45 border-white/10 hover:bg-white/60 text-[#283244]"
+                                                            : `bg-white/45 border-white/10 text-[#283244] ${readOnly ? "pointer-events-none cursor-default" : "hover:bg-white/60 active:scale-98"}`
                                                     }`}
                                                 >
                                                     {isListening ? (
@@ -1281,7 +1316,11 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                         {/* Bottom Action Button */}
                                         <button
                                             onClick={handleContinue}
-                                            className="w-full py-3.5 rounded-[16px] text-[13.5px] font-bold text-white transition-all shadow-md active:scale-[0.98] flex items-center justify-center gap-2"
+                                            aria-disabled={readOnly}
+                                            tabIndex={readOnly ? -1 : undefined}
+                                            className={`w-full py-3.5 rounded-[16px] text-[13.5px] font-bold text-white transition-all shadow-md flex items-center justify-center gap-2 ${
+                                                readOnly ? "pointer-events-none cursor-default" : "active:scale-[0.98]"
+                                            }`}
                                             style={{ 
                                                 backgroundColor: activeEmotion ? activeEmotion.color : "#85D3C9",
                                                 color: activeEmotion && (activeEmotion.id === "surprise" || activeEmotion.id === "joy") ? "#283244" : "#FFFFFF"
@@ -1294,106 +1333,36 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
                                 )}
                             </motion.div>
                         ) : (
-                            <motion.div 
+                            <motion.div
                                 key="success"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -30 }}
-                                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                                className="flex-1 flex flex-col justify-center items-center text-center px-4 relative z-10"
+                                initial={{ opacity: 0, scale: 0.96 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.96 }}
+                                transition={{ duration: 0.28, ease: "easeOut" }}
+                                className="flex-1 flex items-center justify-center relative z-10"
                             >
-                                {/* Particle system inside the mockup */}
-                                <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-[36px] z-50">
-                                    {particles.map((p) => (
-                                        <motion.div
-                                            key={p.id}
-                                            initial={{ x: p.x, y: 300, opacity: 1, scale: 0.5 }}
-                                            animate={{ 
-                                                y: p.y, 
-                                                x: p.x + (Math.random() * 60 - 30), 
-                                                opacity: 0, 
-                                                scale: [1, 1.2, 0.8],
-                                                rotate: Math.random() * 360 
-                                            }}
-                                            transition={{ duration: 1.8, ease: "easeOut" }}
-                                            style={{ position: "absolute", left: "50%", fontSize: p.size }}
-                                            className="select-none"
-                                        >
-                                            {p.emoji}
-                                        </motion.div>
-                                    ))}
-                                </div>
-
-                                {/* Success Icon */}
-                                <motion.div 
-                                    initial={{ scale: 0.5, rotate: -45 }}
-                                    animate={{ scale: 1.05, rotate: 0 }}
-                                    transition={{ delay: 0.15, type: "spring", stiffness: 260, damping: 15 }}
-                                    className="w-[72px] h-[72px] rounded-full bg-[#E2F7F4] flex items-center justify-center mb-6 shadow-sm border border-[#C5ECE4]"
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10, scale: 0.92 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    transition={{ delay: 0.12, type: "spring", stiffness: 260, damping: 18 }}
+                                    className="inline-flex items-center gap-[12px] rounded-[20px] border border-white/30 bg-white/32 px-[18px] py-[13px] text-[#18345D] shadow-[0_18px_34px_rgba(29,80,150,0.16)] backdrop-blur-sm"
                                 >
-                                    <svg className="w-10 h-10 text-[#2EB8AA]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
+                                    <span
+                                        className="flex h-[38px] w-[38px] items-center justify-center rounded-full"
+                                        style={{
+                                            backgroundColor: activeEmotion?.color ?? "#5F98F3",
+                                            color: activeEmotion && (activeEmotion.id === "surprise" || activeEmotion.id === "joy") ? "#283244" : "#FFFFFF",
+                                            boxShadow: activeEmotion ? `0 10px 22px ${activeEmotion.glow}` : "0 10px 22px rgba(95, 152, 243, 0.24)",
+                                        }}
+                                    >
+                                        <svg className="h-[20px] w-[20px]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </span>
+                                    <span className="text-[19px] font-black leading-none">
+                                        {isRtl ? "تم الحفظ" : "Saved"}
+                                    </span>
                                 </motion.div>
-
-                                <h3 className="text-[20px] font-bold text-[#101827] mb-2.5">
-                                    {isRtl ? "تم تسجيل المزاج!" : "Mood Logged!"}
-                                </h3>
-                                
-                                <p className="text-[13px] text-[#4A5462] leading-[20px] mb-8 max-w-[200px]">
-                                    {isRtl 
-                                        ? "عمل رائع! تخصيص ٣٠ ثانية للتأمل في مشاعرك هو عادة قوية لصحتك النفسية." 
-                                        : "Great job! Taking 30 seconds to reflect on your feelings is a powerful habit for your wellbeing."}
-                                </p>
-
-                                {/* Summary details card */}
-                                <div className="w-full bg-[#F5F6F8] rounded-[20px] p-4 border border-[#E4E6EA] mb-6 text-[12.5px] font-semibold text-[#101827] max-h-[170px] overflow-y-auto scrollbar-thin">
-                                    <div className="flex justify-between mb-1.5">
-                                        <span className="text-[#6A727F]">{isRtl ? "المزاج الرئيسي" : "Core Emotion"}</span>
-                                        <span>{activeEmotion && getLocalizedLabel(activeEmotion.label, isRtl)} {activeEmotion?.emoji}</span>
-                                    </div>
-                                    {activeDetail && (
-                                        <div className="flex justify-between mb-1.5">
-                                            <span className="text-[#6A727F]">{isRtl ? "التفصيل العاطفي" : "Sub-Emotion"}</span>
-                                            <span>{getLocalizedLabel(activeDetail.middle, isRtl)}</span>
-                                        </div>
-                                    )}
-                                    <div className="flex justify-between mb-1.5">
-                                        <span className="text-[#6A727F]">{isRtl ? "الشدة" : "Intensity"}</span>
-                                        <span className="capitalize">{intensity === "light" ? t("Light", "خفيف") : intensity === "medium" ? t("Medium", "متوسط") : t("Strong", "قوي")}</span>
-                                    </div>
-                                    {selectedActivities.length > 0 && (
-                                        <div className="flex justify-between mb-1.5">
-                                            <span className="text-[#6A727F]">{isRtl ? "النشاط" : "Activity"}</span>
-                                            <span className="text-right truncate max-w-[150px]">{selectedActivities.join(", ")}</span>
-                                        </div>
-                                    )}
-                                    {selectedLocation && (
-                                        <div className="flex justify-between mb-1.5">
-                                            <span className="text-[#6A727F]">{isRtl ? "المكان" : "Location"}</span>
-                                            <span>{selectedLocation}</span>
-                                        </div>
-                                    )}
-                                    {selectedPeople.length > 0 && (
-                                        <div className="flex justify-between mb-1.5">
-                                            <span className="text-[#6A727F]">{isRtl ? "مع من" : "With"}</span>
-                                            <span className="text-right truncate max-w-[150px]">{selectedPeople.join(", ")}</span>
-                                        </div>
-                                    )}
-                                    {journalText.trim() !== "" && (
-                                        <div className="flex flex-col items-start border-t border-[#E4E6EA] pt-1.5 mt-1.5">
-                                            <span className="text-[#6A727F] mb-0.5">{isRtl ? "الملاحظة" : "Journal Entry"}</span>
-                                            <span className="text-[#4A5462] font-normal italic text-[11px] leading-relaxed text-left max-h-[50px] overflow-y-auto w-full scrollbar-thin">{journalText}</span>
-                                        </div>
-                                    )}
-                                </div>
-
-                                <button
-                                    onClick={handleLogAnother}
-                                    className="w-full py-3.5 bg-[#2EB8AA] hover:bg-[#259b8f] active:scale-[0.98] rounded-[16px] text-[14px] font-bold text-white transition-all shadow-md"
-                                >
-                                    {isRtl ? "تسجيل آخر" : "Log Another"}
-                                </button>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -1402,3 +1371,4 @@ export default function EmotionWheelSandbox({ locale, t }: EmotionWheelSandboxPr
         </div>
     )
 }
+

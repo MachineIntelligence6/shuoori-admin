@@ -37,7 +37,6 @@ export const SECTION_KEYS = [
   "testimonials",
   "pricing",
   "faq",
-  "final_cta",
   "footer",
 ] as const
 
@@ -165,18 +164,6 @@ export const SECTION_CONFIGS: SectionConfig[] = [
       { name: "answer", label: "Answer", type: "localizedTextarea" },
     ],
     defaultItem: { question: localized(), answer: localized() },
-    copyLabels: { title: "Section heading", subtitle: "Small badge text", body: "Intro paragraph" },
-  },
-  {
-    key: "final_cta",
-    label: "Final CTA",
-    description: "Final download section headline, intro copy, and value propositions.",
-    itemLabel: "Value Proposition",
-    fields: [
-      { name: "title", label: "Title", type: "localized" },
-      { name: "description", label: "Description", type: "localizedTextarea" },
-    ],
-    defaultItem: { title: localized(), description: localized() },
     copyLabels: { title: "Section heading", subtitle: "Small badge text", body: "Intro paragraph" },
   },
   {

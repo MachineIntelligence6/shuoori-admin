@@ -1,4 +1,3 @@
-import { ClerkProvider } from "@clerk/nextjs"
 import type { Metadata } from "next"
 import "./globals.css"
 
@@ -12,20 +11,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-  const document = (
+  return (
     <html lang="en">
       <body>{children}</body>
     </html>
-  )
-
-  if (!publishableKey) {
-    return document
-  }
-
-  return (
-    <ClerkProvider publishableKey={publishableKey}>
-      {document}
-    </ClerkProvider>
   )
 }

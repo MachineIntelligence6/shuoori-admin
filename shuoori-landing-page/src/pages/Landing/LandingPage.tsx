@@ -5,7 +5,7 @@ type LandingPageProps = {
     setLocale: (l: Locale) => void
 }
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import { motion, useSpring, useTransform } from "framer-motion"
 
 function AnimatedCounter({ value }: { value: number }) {
@@ -55,17 +55,12 @@ import ShareDetailsPreview from "../../components/Landing/ShareDetailsPreview"
 import { TrendWidget } from "../../components/Landing/TrendWidget"
 import AnalyticsPhoneMockup from "../../components/Landing/AnalyticsPhoneMockup"
 import EmotionWheelSandbox from "../../components/Landing/EmotionWheelSandbox"
-import dummyHeroVideo from "../../assets/dummy-hero-video.mp4"
 import { fetchCmsSections, buildTextOverrides, groupSectionsByKey, type CmsSection } from "../../lib/cmsContent"
 
 export default function LandingPage({ locale, setLocale }: LandingPageProps) {
     const isRtl = locale === "ar"
-    const heroBannerVideo = dummyHeroVideo
     const [cmsContent, setCmsContent] = useState<{ en?: Record<string, string>; ar?: Record<string, string> } | null>(null)
     const [rawSections, setRawSections] = useState<CmsSection[]>([])
-    const [pricingPeriod, setPricingPeriod] = useState<"monthly" | "yearly">("monthly")
-    const [isHeroVideoPlaying, setIsHeroVideoPlaying] = useState(true)
-    const heroVideoRef = useRef<HTMLVideoElement | null>(null)
 
     useEffect(() => {
         const controller = new AbortController()
@@ -90,15 +85,6 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
         }
     }, [])
 
-    const toggleHeroVideo = () => {
-        if (!heroVideoRef.current) return
-        if (isHeroVideoPlaying) {
-            heroVideoRef.current.pause()
-        } else {
-            heroVideoRef.current.play().catch(() => { })
-        }
-        setIsHeroVideoPlaying(!isHeroVideoPlaying)
-    }
     const t = (en: string, ar: string) => {
         const map = cmsContent?.[isRtl ? "ar" : "en"]
         const override = map?.[en]
@@ -299,7 +285,12 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             <button className="flex items-center justify-center rounded-[12px] bg-[#2EB8AA] px-[36px] py-[16px] text-[16px] font-semibold text-white transition-all hover:bg-[#259b8f] shadow-lg shadow-[#2eb8aa]/30">
                                 {t("Start free no card needed", "ابدأ مجاناً بدون بطاقة")}
                             </button>
-                            <button className="flex items-center justify-center gap-[10px] rounded-[12px] border border-[#E4E6EA] bg-white px-[32px] py-[16px] text-[16px] font-semibold text-[#101827] transition-all hover:bg-[#F8F9FB] shadow-sm">
+                            <button
+                                type="button"
+                                disabled
+                                aria-disabled="true"
+                                className="flex cursor-default items-center justify-center gap-[10px] rounded-[12px] border border-[#E4E6EA] bg-white px-[32px] py-[16px] text-[16px] font-semibold text-[#101827] shadow-sm disabled:opacity-100"
+                            >
                                 <svg width="20" height="20" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M7.99998 14.6666C11.6819 14.6666 14.6666 11.6819 14.6666 7.99998C14.6666 4.31808 11.6819 1.33331 7.99998 1.33331C4.31808 1.33331 1.33331 4.31808 1.33331 7.99998C1.33331 11.6819 4.31808 14.6666 7.99998 14.6666Z" stroke="#18181B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M6.66665 5.33331L10.6666 7.99998L6.66665 10.6666V5.33331Z" stroke="#18181B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -364,7 +355,7 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                         transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
                         className="relative flex w-full items-center justify-center lg:w-[480px] xl:w-[520px] 2xl:w-[560px] lg:flex-shrink-0"
                     >
-                        <EmotionWheelSandbox locale={locale} t={t} />
+                        <EmotionWheelSandbox locale={locale} t={t} readOnly />
                     </motion.div>
 
                     {/* Floating Cards (Visible only on lg displays) */}
@@ -1027,65 +1018,6 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                                 </div>
                             )
                         })}
-                    </div>
-                </div>
-            </section>
-            <section className="py-[96px]">
-                <div className={`mx-auto flex w-full max-w-[1200px] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1480px] flex-col items-center gap-[48px] px-6 lg:flex-row lg:items-center lg:gap-[64px] lg:px-[96px] ${isRtl ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""}`}>
-                    <div className={`flex flex-1 flex-col gap-[32px] ${isRtl ? "text-right items-start" : "text-left items-start"}`}>
-                        <div className="flex flex-col gap-[12px]">
-                            <div className="flex w-fit items-center justify-center rounded-full border border-[#2EB8AA] px-[16px] py-[6px] text-[14px] font-medium text-[#2EB8AA]">
-                                {t("Try Now", "جرّب الآن")}
-                            </div>
-                            <h2 className="text-[48px] font-semibold leading-[1.1] tracking-[-1.92px] text-[#101827]">
-                                {t("Your emotional wellness", "رحلتك نحو الرفاه العاطفي")}
-                                <br />
-                                {t("journey ", "")}
-                                <span className="text-[#2EB8AA]">{t("starts today", "تبدأ اليوم")}</span>
-                            </h2>
-                            <p className="w-full mt-[8px] text-[16px] leading-[26px] text-[#4A5462]">
-                                {t(
-                                    "Download Shuoori for free. Start tracking in under a minute. Join 50,000+ people who've already transformed their emotional health.",
-                                    "حمّل Shuoori مجاناً. ابدأ التتبع خلال أقل من دقيقة. انضم لأكثر من 50,000 شخص ممن غيّروا صحتهم العاطفية."
-                                )}
-                            </p>
-
-                            {/* Value propositions */}
-                            <div className="mt-8 flex flex-col gap-5 w-full">
-                                {[
-                                    {
-                                        title: t("Pick Emotion & Intensity", "اختر الشعور والشدة"),
-                                        desc: t("Quick, intuitive wheel selection and continuous intensity slider.", "تحديد سريع وسهل للمشاعر عبر العجلة وشريط الشدة.")
-                                    },
-                                    {
-                                        title: t("Add Activities, Locations & People", "أضف الأنشطة والأماكن والرفقاء"),
-                                        desc: t("Log where you were, what you were doing, and who you were with.", "سجل أين كنت، ماذا كنت تفعل، ومع من كنت.")
-                                    },
-                                    {
-                                        title: t("Tap to Speak Journaling", "التدوين الصوتي بضغطة زر"),
-                                        desc: t("Just speak naturally to convert your voice into a rich journal note.", "تحدث بشكل طبيعي لتحويل صوتك إلى نص وملاحظة عاطفية غنية.")
-                                    }
-                                ].map((item, idx) => (
-                                    <div key={idx} className="flex items-start gap-3.5">
-                                        <CheckCircle2 className="h-5.5 w-5.5 text-[#2EB8AA] flex-shrink-0 mt-0.5" strokeWidth={2.5} />
-                                        <div className={`flex flex-col ${isRtl ? "text-right" : "text-left"}`}>
-                                            <h4 className="text-[15.5px] font-bold text-[#101827] leading-tight mb-1">{item.title}</h4>
-                                            <p className="text-[13.5px] text-[#5A6475] leading-relaxed">{item.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div className="flex flex-1 items-center justify-center w-full">
-                        <div
-                            className="flex w-full items-center justify-center bg-contain bg-center bg-no-repeat py-[24px]"
-                            style={{ backgroundImage: `url(${trySection.blob})` }}
-                        >
-                            <EmotionWheelSandbox locale={locale} t={t} />
-                        </div>
                     </div>
                 </div>
             </section>

@@ -229,8 +229,6 @@ export default function ShareDetailsPreview({ locale }: ShareDetailsPreviewProps
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative w-full max-w-[430px]"
         >
-            <div className="pointer-events-none absolute inset-x-[8%] top-[14%] h-[72%] rounded-full bg-[#2EB8AA]/10 blur-3xl" />
-
             <div className="relative flex w-full flex-col items-center gap-[24px] rounded-[18px] bg-white p-[18px] shadow-[0_14px_34px_rgba(16,24,39,0.12)]">
                 <div className="flex w-full flex-col gap-[8px]">
                     <p className="text-[14px] font-medium leading-none text-[#18181B]">

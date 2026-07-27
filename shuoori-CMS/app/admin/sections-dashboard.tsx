@@ -381,15 +381,17 @@ export default function AdminDashboard() {
                 </div>
                 <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1B7C72]">Shuoori CMS</span>
               </div>
-              <button
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E4E6EA] bg-white text-slate-400 transition hover:bg-slate-50 hover:text-slate-800 shadow-sm"
-                onClick={fetchSections}
-                type="button"
-                aria-label="Refresh sections"
-                title="Refresh database connection"
-              >
-                <RefreshCw className={`h-3.5 w-3.5 ${isLoading ? "animate-spin text-[#2EB8AA]" : ""}`} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E4E6EA] bg-white text-slate-400 transition hover:bg-slate-50 hover:text-slate-800 shadow-sm"
+                  onClick={fetchSections}
+                  type="button"
+                  aria-label="Refresh sections"
+                  title="Refresh database connection"
+                >
+                  <RefreshCw className={`h-3.5 w-3.5 ${isLoading ? "animate-spin text-[#2EB8AA]" : ""}`} />
+                </button>
+              </div>
             </div>
             <h1 className="mt-5 font-serif text-[28px] font-semibold tracking-tight text-[#101827] leading-none">Landing Editor</h1>
             <p className="mt-2 text-xs leading-relaxed text-[#8C95A3] font-medium">Manage existing landing page content, media, and publish state.</p>

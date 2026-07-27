@@ -231,10 +231,6 @@ export function buildTextOverrides(sections: CmsSection[]): CmsTextOverrides {
         if (answer?.en) set(answer.en, answer)
     })
 
-    setSplit(["Your emotional wellness", "starts today"], byKey.final_cta?.title)
-    set("Try Now", byKey.final_cta?.subtitle)
-    set("Download Shuoori for free. Start tracking in under a minute. Join 50,000+ people who've already transformed their emotional health.", byKey.final_cta?.body)
-
     set("© 2026 Shuoori. Made with care for your wellbeing.", byKey.footer?.title)
     sectionItems(byKey.footer).forEach((item) => {
         const label = item.label as LocalizedText | undefined

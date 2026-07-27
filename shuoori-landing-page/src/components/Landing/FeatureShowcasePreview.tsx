@@ -24,7 +24,6 @@ function HipaaPreview({ locale }: { locale: Locale }) {
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="relative w-full max-w-[430px]"
         >
-            <div className="pointer-events-none absolute inset-x-[12%] top-[14%] h-[70%] rounded-full bg-[#2EB8AA]/12 blur-3xl" />
             <div className="relative overflow-hidden rounded-[28px] border border-[#E8ECF2] bg-white p-[24px] shadow-[0_20px_42px_rgba(16,24,39,0.10)]">
                 <div className="flex items-start justify-between gap-[16px]">
                     <div className={`flex flex-col gap-[8px] ${isRtl ? "items-start text-right" : "items-start text-left"}`}>
@@ -94,21 +93,18 @@ export default function FeatureShowcasePreview({ featureId, locale }: FeatureSho
 
     return (
         <div className="relative flex min-h-[420px] w-full items-center justify-center lg:min-h-[520px]">
-            <div className="pointer-events-none absolute inset-x-[8%] top-[12%] h-[76%] rounded-full bg-[radial-gradient(circle,rgba(46,184,170,0.12),rgba(255,255,255,0))] blur-2xl" />
-            <div className="relative flex w-full items-center justify-center rounded-[36px] bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(248,250,252,0.92))] px-[12px] py-[20px]">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={featureId}
-                        initial={{ opacity: 0, y: 18, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -18, scale: 0.98 }}
-                        transition={{ duration: 0.35, ease: "easeOut" }}
-                        className="flex w-full items-center justify-center"
-                    >
-                        {preview}
-                    </motion.div>
-                </AnimatePresence>
-            </div>
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={featureId}
+                    initial={{ opacity: 0, y: 18, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -18, scale: 0.98 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="flex w-full items-center justify-center"
+                >
+                    {preview}
+                </motion.div>
+            </AnimatePresence>
         </div>
     )
 }

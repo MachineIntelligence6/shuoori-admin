@@ -485,13 +485,6 @@ export default function EmotionWheelLoop({ locale }: EmotionWheelLoopProps) {
 
     return (
         <div className="relative flex w-full max-w-[480px] items-center justify-center">
-            <div
-                className="pointer-events-none absolute inset-[10%] rounded-full blur-[54px] transition-all duration-700"
-                style={{
-                    background: `radial-gradient(circle, ${activeEmotion.glow} 0%, rgba(255,255,255,0) 70%)`,
-                }}
-            />
-
             <motion.div
                 animate={{ y: [0, -5, 0, 2, 0], rotate: [0, -0.25, 0.2, 0], scale: [1, 1.008, 1, 0.996, 1] }}
                 transition={{ duration: 12, ease: "easeInOut", repeat: Infinity }}

@@ -10,8 +10,8 @@
       "ar": "ترويسة صفحة الهبوط"
     },
     "body": {
-      "en": "Primary navigation and sign-in call to action.",
-      "ar": "روابط التنقل الرئيسية وزر تسجيل الدخول."
+      "en": "Primary navigation and header call to action.",
+      "ar": "روابط التنقل الرئيسية وزر الدعوة إلى الإجراء."
     },
     "images": [
       {
@@ -597,56 +597,6 @@
       }
     ],
     "order": 7,
-    "isPublished": true
-  },
-  {
-    "key": "final_cta",
-    "title": {
-      "en": "Your emotional wellness journey starts today",
-      "ar": "رحلتك نحو الرفاه العاطفي تبدأ اليوم"
-    },
-    "subtitle": {
-      "en": "Try Now",
-      "ar": "جرب الآن"
-    },
-    "body": {
-      "en": "Download Shuoori for free. Start tracking in under a minute. Join 50,000+ people who've already transformed their emotional health.",
-      "ar": "حمل Shuoori مجانا. ابدأ التتبع خلال أقل من دقيقة. انضم لأكثر من 50,000 شخص ممن غيروا صحتهم العاطفية."
-    },
-    "images": [],
-    "items": [
-      {
-        "title": {
-          "en": "Pick Emotion & Intensity",
-          "ar": "اختر الشعور والشدة"
-        },
-        "description": {
-          "en": "Quick, intuitive wheel selection and continuous intensity slider.",
-          "ar": "تحديد سريع وسهل للمشاعر عبر العجلة وشريط الشدة."
-        }
-      },
-      {
-        "title": {
-          "en": "Add Activities, Locations & People",
-          "ar": "أضف الأنشطة والأماكن والرفقاء"
-        },
-        "description": {
-          "en": "Log where you were, what you were doing, and who you were with.",
-          "ar": "سجل أين كنت، ماذا كنت تفعل، ومع من كنت."
-        }
-      },
-      {
-        "title": {
-          "en": "Tap to Speak Journaling",
-          "ar": "التدوين الصوتي بضغطة زر"
-        },
-        "description": {
-          "en": "Just speak naturally to convert your voice into a rich journal note.",
-          "ar": "تحدث بشكل طبيعي لتحويل صوتك إلى نص وملاحظة عاطفية غنية."
-        }
-      }
-    ],
-    "order": 8,
     "isPublished": true
   },
   {
