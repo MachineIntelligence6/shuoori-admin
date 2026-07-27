@@ -94,18 +94,18 @@
       {
         "url": "/Mobile app store badge.svg",
         "alt": {
-          "en": "Download on the App Store",
-          "ar": "تنزيل من آب ستور"
-        },
-        "key": "legacy/mobile-app-store-badge.svg"
-      },
-      {
-        "url": "/Mobile app store badge (1).svg",
-        "alt": {
           "en": "Get it on Google Play",
           "ar": "احصل عليه من جوجل بلاي"
         },
         "key": "legacy/mobile-app-store-badge-google.svg"
+      },
+      {
+        "url": "/Mobile app store badge (1).svg",
+        "alt": {
+          "en": "Download on the App Store",
+          "ar": "تنزيل من آب ستور"
+        },
+        "key": "legacy/mobile-app-store-badge.svg"
       },
       {
         "url": "/dummy-hero-video.mp4",

@@ -314,34 +314,45 @@ export default function LandingPage({ locale, setLocale }: LandingPageProps) {
                             {t("50K+ people track their emotions daily", "أكثر من 50 ألف شخص يتتبعون مشاعرهم يومياً")}
                         </div>
 
-                        <div className="mt-[40px] flex flex-wrap items-center justify-center gap-[14px] lg:justify-start">
-                            <a
-                                href="https://play.google.com/store"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Get Shuoori on Google Play"
-                                className="transition-transform duration-200 hover:-translate-y-1"
-                            >
-                                <img
-                                    src="/Mobile app store badge.svg"
-                                    alt="Download on Google Play"
-                                    className="h-auto w-full max-w-[162px] object-contain"
-                                />
-                            </a>
-                            <a
-                                href="https://apps.apple.com/us/app/shuoori/id6769279333"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Download Shuoori on the App Store"
-                                className="transition-transform duration-200 hover:-translate-y-1"
-                            >
-                                <img
-                                    src="/Mobile app store badge (1).svg"
-                                    alt="Download on the App Store"
-                                    className="h-auto w-full max-w-[143px] object-contain"
-                                />
-                            </a>
-                        </div>
+                        {(() => {
+                            const cmsSectionsMap = groupSectionsByKey(rawSections)
+                            const heroImages = cmsSectionsMap.hero?.images || []
+                            const googlePlayImg = heroImages[0]?.url || "/Mobile app store badge.svg"
+                            const googlePlayAlt = (isRtl ? heroImages[0]?.alt?.ar : heroImages[0]?.alt?.en) || t("Download on Google Play", "تحميل من جوجل بلاي")
+                            const appStoreImg = heroImages[1]?.url || "/Mobile app store badge (1).svg"
+                            const appStoreAlt = (isRtl ? heroImages[1]?.alt?.ar : heroImages[1]?.alt?.en) || t("Download on the App Store", "تنزيل من آب ستور")
+
+                            return (
+                                <div className="mt-[40px] flex flex-wrap items-center justify-center gap-[14px] lg:justify-start">
+                                    <a
+                                        href="https://play.google.com/store"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="Get Shuoori on Google Play"
+                                        className="transition-transform duration-200 hover:-translate-y-1"
+                                    >
+                                        <img
+                                            src={googlePlayImg}
+                                            alt={googlePlayAlt}
+                                            className="h-auto w-full max-w-[162px] object-contain"
+                                        />
+                                    </a>
+                                    <a
+                                        href="https://apps.apple.com/us/app/shuoori/id6769279333"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="Download Shuoori on the App Store"
+                                        className="transition-transform duration-200 hover:-translate-y-1"
+                                    >
+                                        <img
+                                            src={appStoreImg}
+                                            alt={appStoreAlt}
+                                            className="h-auto w-full max-w-[143px] object-contain"
+                                        />
+                                    </a>
+                                </div>
+                            )
+                        })()}
                     </div>
 
                     <motion.div

@@ -76,7 +76,7 @@ export const SECTION_CONFIGS: SectionConfig[] = [
     ],
     defaultItem: { kind: "cta", label: localized(), href: "#", value: "", suffix: "", decimals: 0, imageUrl: "" },
     copyLabels: { title: "Main headline", subtitle: "Small badge text", body: "Intro paragraph" },
-    mediaLabels: ["App Store badge", "Google Play badge", "Hero video"],
+    mediaLabels: ["Google Play badge", "App Store badge", "Hero video"],
   },
   {
     key: "process",
